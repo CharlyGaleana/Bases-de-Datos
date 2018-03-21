@@ -10,6 +10,28 @@
         #form1 {
             height: 409px;
         }
+        .auto-style1 {
+            width: 79%;
+            height: 26px;
+            position: absolute;
+            top: 255px;
+            left: 15px;
+            z-index: 1;
+            margin-bottom: 272px;
+        }
+        .auto-style2 {
+            height: 22px;
+        }
+        .auto-style3 {
+            position: absolute;
+            top: 36px;
+            left: 12px;
+            z-index: 2;
+        }
+        .auto-style4 {
+            height: 22px;
+            width: 337px;
+        }
     </style>
 </head>
 <body>
@@ -48,6 +70,18 @@
                 <asp:TableCell runat="server"></asp:TableCell>
             </asp:TableRow>
         </asp:Table>
+        <table class="auto-style1">
+            <tr class="auto-style3">
+                <td class="auto-style4">
+                    <asp:GridView ID="GrdArticulos" runat="server">
+                    </asp:GridView>
+                </td>
+                <td class="auto-style2">
+                    <asp:GridView ID="GrdPagos" runat="server" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+                    </asp:GridView>
+                </td>
+            </tr>
+        </table>
     </div>
     </form>
 </body>

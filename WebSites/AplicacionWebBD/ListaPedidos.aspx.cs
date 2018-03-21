@@ -57,5 +57,24 @@ public partial class ListaPedidos : System.Web.UI.Page {
         tblPedidos.Rows[1].Cells[2].Text = fila["monto"].ToString();
         tblPedidos.Rows[1].Cells[3].Text = fila["saldocli"].ToString();
         tblPedidos.Rows[1].Cells[4].Text = fila["saldofacs"].ToString();
+
+        //muestra los artículos del pedido
+        cadSql = "select Nombre, CantPed, CantEnt from PCDetalle d, PCArtículos a "
+            + "where folioP = " + ddlPedidos.Text + " and d.idart = a.idart";
+        GestorBD.consBD(cadSql, DSArtículos, "Artículos");
+        GrdArticulos.DataSource = DSArtículos.Tables["Artículos"];
+        GrdArticulos.DataBind();
+
+        //muestra los pagos realizados al pedido seleccionado
+        //Muestra los pagos realizados para el pedido seleccionado.
+        cadSql = "select * from PCPagos where FolioP=" + ddlPedidos.Text;
+        GestorBD.consBD(cadSql, DSPagos, "Pagos");
+        GrdPagos.DataSource = DSPagos.Tables["Pagos"];  //Muestra resultados.
+        GrdPagos.DataBind();
+
+    }
+
+    protected void GridView2_SelectedIndexChanged(object sender, EventArgs e) {
+
     }
 }
