@@ -1,0 +1,14 @@
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\Tarea5.exe.config
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\Tarea5.exe
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\Tarea5.pdb
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.csprojResolveAssemblyReference.cache
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Form1.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Properties.Resources.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.csproj.GenerateResource.Cache
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.exe
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.pdb
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmCampus.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmCarreras.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmInstituciones.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmServicios.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.Subprogramas.resources

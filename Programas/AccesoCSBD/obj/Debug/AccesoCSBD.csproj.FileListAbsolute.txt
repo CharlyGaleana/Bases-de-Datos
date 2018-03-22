@@ -30,3 +30,6 @@ C:\Users\sdist\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.
 C:\Users\sdist\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Procesos.FrmSubprogsAlms.resources
 C:\Users\sdist\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Properties.Resources.resources
 C:\Users\sdist\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.csproj.GenerateResource.Cache
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\AccesoCSBD.exe.config
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.exe
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.pdb
