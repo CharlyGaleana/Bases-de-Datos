@@ -45,6 +45,10 @@
             this.txtProfesores = new System.Windows.Forms.TextBox();
             this.cmbInstituciones = new System.Windows.Forms.ComboBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
+            this.cmbCarreras = new System.Windows.Forms.ComboBox();
+            this.cmbServicios = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAlta
@@ -207,11 +211,56 @@
             this.btnRegistrar.Visible = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
+            // cmbCarreras
+            // 
+            this.cmbCarreras.Enabled = false;
+            this.cmbCarreras.FormattingEnabled = true;
+            this.cmbCarreras.Location = new System.Drawing.Point(426, 221);
+            this.cmbCarreras.Name = "cmbCarreras";
+            this.cmbCarreras.Size = new System.Drawing.Size(121, 21);
+            this.cmbCarreras.TabIndex = 16;
+            this.cmbCarreras.Visible = false;
+            // 
+            // cmbServicios
+            // 
+            this.cmbServicios.Enabled = false;
+            this.cmbServicios.FormattingEnabled = true;
+            this.cmbServicios.Location = new System.Drawing.Point(426, 251);
+            this.cmbServicios.Name = "cmbServicios";
+            this.cmbServicios.Size = new System.Drawing.Size(121, 21);
+            this.cmbServicios.TabIndex = 17;
+            this.cmbServicios.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(319, 224);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Carrera";
+            this.label8.Visible = false;
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(319, 251);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Servicio";
+            this.label9.Visible = false;
+            // 
             // AltaCampus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 320);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cmbServicios);
+            this.Controls.Add(this.cmbCarreras);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.cmbInstituciones);
             this.Controls.Add(this.txtProfesores);
@@ -255,5 +304,9 @@
         private System.Windows.Forms.TextBox txtProfesores;
         private System.Windows.Forms.ComboBox cmbInstituciones;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.ComboBox cmbCarreras;
+        private System.Windows.Forms.ComboBox cmbServicios;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

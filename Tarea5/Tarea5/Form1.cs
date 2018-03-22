@@ -63,5 +63,11 @@ namespace Tarea5
             Procedimientos.AltaCampus c = new Procedimientos.AltaCampus();
             c.Show();
         }
+
+        private void consultaCiudadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Procedimientos.CampusCiudad c = new Procedimientos.CampusCiudad();
+            c.Show();
+        }
     }
 }

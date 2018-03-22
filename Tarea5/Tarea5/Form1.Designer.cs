@@ -40,6 +40,7 @@
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subProgramasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaCampusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaCiudadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +115,8 @@
             this.procedientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consultasToolStripMenuItem,
             this.subProgramasToolStripMenuItem,
-            this.altaCampusToolStripMenuItem});
+            this.altaCampusToolStripMenuItem,
+            this.consultaCiudadToolStripMenuItem});
             this.procedientosToolStripMenuItem.Name = "procedientosToolStripMenuItem";
             this.procedientosToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
             this.procedientosToolStripMenuItem.Text = "Procedimientos";
@@ -122,23 +124,30 @@
             // consultasToolStripMenuItem
             // 
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.consultasToolStripMenuItem.Text = "Consultas";
             this.consultasToolStripMenuItem.Click += new System.EventHandler(this.consultasToolStripMenuItem_Click);
             // 
             // subProgramasToolStripMenuItem
             // 
             this.subProgramasToolStripMenuItem.Name = "subProgramasToolStripMenuItem";
-            this.subProgramasToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.subProgramasToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.subProgramasToolStripMenuItem.Text = "SubProgramas";
             this.subProgramasToolStripMenuItem.Click += new System.EventHandler(this.subProgramasToolStripMenuItem_Click);
             // 
             // altaCampusToolStripMenuItem
             // 
             this.altaCampusToolStripMenuItem.Name = "altaCampusToolStripMenuItem";
-            this.altaCampusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.altaCampusToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.altaCampusToolStripMenuItem.Text = "Alta Campus";
             this.altaCampusToolStripMenuItem.Click += new System.EventHandler(this.altaCampusToolStripMenuItem_Click);
+            // 
+            // consultaCiudadToolStripMenuItem
+            // 
+            this.consultaCiudadToolStripMenuItem.Name = "consultaCiudadToolStripMenuItem";
+            this.consultaCiudadToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.consultaCiudadToolStripMenuItem.Text = "Consulta Carrera/Ciudad";
+            this.consultaCiudadToolStripMenuItem.Click += new System.EventHandler(this.consultaCiudadToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -170,6 +179,7 @@
         private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subProgramasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaCampusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultaCiudadToolStripMenuItem;
     }
 }
 

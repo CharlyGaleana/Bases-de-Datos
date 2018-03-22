@@ -31,3 +31,7 @@ C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.csproj.Gene
 C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\GestorBD.dll
 C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\GestorBD.pdb
 C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.AltaCampus.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.AltaCampus.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\GestorBD.dll
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\GestorBD.pdb
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.CampusCiudad.resources

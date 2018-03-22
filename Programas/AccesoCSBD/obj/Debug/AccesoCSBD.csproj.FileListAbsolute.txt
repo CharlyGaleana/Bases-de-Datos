@@ -33,3 +33,16 @@ C:\Users\sdist\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\AccesoCSBD.exe.config
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.exe
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.pdb
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\AccesoCSBD.exe
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\AccesoCSBD.pdb
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\GestorBD.dll
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\GestorBD.pdb
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.csprojResolveAssemblyReference.cache
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.FrmAlumno.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.FrmMaterias.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.FrmMenú.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Procesos.FrmAlumCalifs.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Procesos.FrmGestorBD.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Procesos.FrmSubprogsAlms.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Properties.Resources.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.csproj.GenerateResource.Cache

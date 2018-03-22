@@ -66,6 +66,12 @@
     <Compile Include="Procedimientos\AltaCampus.Designer.cs">
       <DependentUpon>AltaCampus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procedimientos\CampusCiudad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procedimientos\CampusCiudad.Designer.cs">
+      <DependentUpon>CampusCiudad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Procedimientos\Consultas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Procedimientos\AltaCampus.resx">
       <DependentUpon>AltaCampus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procedimientos\CampusCiudad.resx">
+      <DependentUpon>CampusCiudad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Procedimientos\Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>
