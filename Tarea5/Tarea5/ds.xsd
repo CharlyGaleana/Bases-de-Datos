@@ -255,6 +255,72 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TP4CONSULTA1TableAdapter" GeneratorDataComponentClassName="TP4CONSULTA1TableAdapter" Name="TP4CONSULTA1" UserDataComponentName="TP4CONSULTA1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="BD12.TP4CONSULTA1" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT "CIUDAD", "NOMCAMP" FROM "BD12"."TP4CONSULTA1"</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CIUDAD" DataSetColumn="CIUDAD" />
+              <Mapping SourceColumn="NOMCAMP" DataSetColumn="NOMCAMP" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TP4CONSULTA2TableAdapter" GeneratorDataComponentClassName="TP4CONSULTA2TableAdapter" Name="TP4CONSULTA2" UserDataComponentName="TP4CONSULTA2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="BD12.TP4CONSULTA2" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT "NOMINS" FROM "BD12"."TP4CONSULTA2"</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOMINS" DataSetColumn="NOMINS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TP4CONSULTA3TableAdapter" GeneratorDataComponentClassName="TP4CONSULTA3TableAdapter" Name="TP4CONSULTA3" UserDataComponentName="TP4CONSULTA3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="BD12.TP4CONSULTA3" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT "NOMINS", "NOMCAMP" FROM "BD12"."TP4CONSULTA3"</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOMINS" DataSetColumn="NOMINS" />
+              <Mapping SourceColumn="NOMCAMP" DataSetColumn="NOMCAMP" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TP4CONSULTA4TableAdapter" GeneratorDataComponentClassName="TP4CONSULTA4TableAdapter" Name="TP4CONSULTA4" UserDataComponentName="TP4CONSULTA4TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="BD12.TP4CONSULTA4" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT "NOMINS" FROM "BD12"."TP4CONSULTA4"</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NOMINS" DataSetColumn="NOMINS" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -263,7 +329,7 @@
   <xs:element name="ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ds" msprop:Generator_UserDSName="ds">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="T4CAMPUS" msprop:Generator_TableClassName="T4CAMPUSDataTable" msprop:Generator_TableVarName="tableT4CAMPUS" msprop:Generator_TablePropName="T4CAMPUS" msprop:Generator_RowDeletingName="T4CAMPUSRowDeleting" msprop:Generator_RowChangingName="T4CAMPUSRowChanging" msprop:Generator_RowEvHandlerName="T4CAMPUSRowChangeEventHandler" msprop:Generator_RowDeletedName="T4CAMPUSRowDeleted" msprop:Generator_UserTableName="T4CAMPUS" msprop:Generator_RowChangedName="T4CAMPUSRowChanged" msprop:Generator_RowEvArgName="T4CAMPUSRowChangeEvent" msprop:Generator_RowClassName="T4CAMPUSRow">
+        <xs:element name="T4CAMPUS" msprop:Generator_TableClassName="T4CAMPUSDataTable" msprop:Generator_TableVarName="tableT4CAMPUS" msprop:Generator_RowChangedName="T4CAMPUSRowChanged" msprop:Generator_TablePropName="T4CAMPUS" msprop:Generator_RowDeletingName="T4CAMPUSRowDeleting" msprop:Generator_RowChangingName="T4CAMPUSRowChanging" msprop:Generator_RowEvHandlerName="T4CAMPUSRowChangeEventHandler" msprop:Generator_RowDeletedName="T4CAMPUSRowDeleted" msprop:Generator_RowClassName="T4CAMPUSRow" msprop:Generator_UserTableName="T4CAMPUS" msprop:Generator_RowEvArgName="T4CAMPUSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDCAMP" msprop:Generator_ColumnVarNameInTable="columnIDCAMP" msprop:Generator_ColumnPropNameInRow="IDCAMP" msprop:Generator_ColumnPropNameInTable="IDCAMPColumn" msprop:Generator_UserColumnName="IDCAMP" type="xs:decimal" />
@@ -307,7 +373,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="T4CARRERA" msprop:Generator_TableClassName="T4CARRERADataTable" msprop:Generator_TableVarName="tableT4CARRERA" msprop:Generator_TablePropName="T4CARRERA" msprop:Generator_RowDeletingName="T4CARRERARowDeleting" msprop:Generator_RowChangingName="T4CARRERARowChanging" msprop:Generator_RowEvHandlerName="T4CARRERARowChangeEventHandler" msprop:Generator_RowDeletedName="T4CARRERARowDeleted" msprop:Generator_UserTableName="T4CARRERA" msprop:Generator_RowChangedName="T4CARRERARowChanged" msprop:Generator_RowEvArgName="T4CARRERARowChangeEvent" msprop:Generator_RowClassName="T4CARRERARow">
+        <xs:element name="T4CARRERA" msprop:Generator_TableClassName="T4CARRERADataTable" msprop:Generator_TableVarName="tableT4CARRERA" msprop:Generator_RowChangedName="T4CARRERARowChanged" msprop:Generator_TablePropName="T4CARRERA" msprop:Generator_RowDeletingName="T4CARRERARowDeleting" msprop:Generator_RowChangingName="T4CARRERARowChanging" msprop:Generator_RowEvHandlerName="T4CARRERARowChangeEventHandler" msprop:Generator_RowDeletedName="T4CARRERARowDeleted" msprop:Generator_RowClassName="T4CARRERARow" msprop:Generator_UserTableName="T4CARRERA" msprop:Generator_RowEvArgName="T4CARRERARowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDCAR" msprop:Generator_ColumnVarNameInTable="columnIDCAR" msprop:Generator_ColumnPropNameInRow="IDCAR" msprop:Generator_ColumnPropNameInTable="IDCARColumn" msprop:Generator_UserColumnName="IDCAR" type="xs:decimal" />
@@ -322,7 +388,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="T4INSTITUCIÓN" msprop:Generator_TableClassName="T4INSTITUCIÓNDataTable" msprop:Generator_TableVarName="tableT4INSTITUCIÓN" msprop:Generator_TablePropName="T4INSTITUCIÓN" msprop:Generator_RowDeletingName="T4INSTITUCIÓNRowDeleting" msprop:Generator_RowChangingName="T4INSTITUCIÓNRowChanging" msprop:Generator_RowEvHandlerName="T4INSTITUCIÓNRowChangeEventHandler" msprop:Generator_RowDeletedName="T4INSTITUCIÓNRowDeleted" msprop:Generator_UserTableName="T4INSTITUCIÓN" msprop:Generator_RowChangedName="T4INSTITUCIÓNRowChanged" msprop:Generator_RowEvArgName="T4INSTITUCIÓNRowChangeEvent" msprop:Generator_RowClassName="T4INSTITUCIÓNRow">
+        <xs:element name="T4INSTITUCIÓN" msprop:Generator_TableClassName="T4INSTITUCIÓNDataTable" msprop:Generator_TableVarName="tableT4INSTITUCIÓN" msprop:Generator_RowChangedName="T4INSTITUCIÓNRowChanged" msprop:Generator_TablePropName="T4INSTITUCIÓN" msprop:Generator_RowDeletingName="T4INSTITUCIÓNRowDeleting" msprop:Generator_RowChangingName="T4INSTITUCIÓNRowChanging" msprop:Generator_RowEvHandlerName="T4INSTITUCIÓNRowChangeEventHandler" msprop:Generator_RowDeletedName="T4INSTITUCIÓNRowDeleted" msprop:Generator_RowClassName="T4INSTITUCIÓNRow" msprop:Generator_UserTableName="T4INSTITUCIÓN" msprop:Generator_RowEvArgName="T4INSTITUCIÓNRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDINST" msprop:Generator_ColumnVarNameInTable="columnIDINST" msprop:Generator_ColumnPropNameInRow="IDINST" msprop:Generator_ColumnPropNameInTable="IDINSTColumn" msprop:Generator_UserColumnName="IDINST" type="xs:decimal" />
@@ -343,11 +409,77 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="T4SERVICIO" msprop:Generator_TableClassName="T4SERVICIODataTable" msprop:Generator_TableVarName="tableT4SERVICIO" msprop:Generator_TablePropName="T4SERVICIO" msprop:Generator_RowDeletingName="T4SERVICIORowDeleting" msprop:Generator_RowChangingName="T4SERVICIORowChanging" msprop:Generator_RowEvHandlerName="T4SERVICIORowChangeEventHandler" msprop:Generator_RowDeletedName="T4SERVICIORowDeleted" msprop:Generator_UserTableName="T4SERVICIO" msprop:Generator_RowChangedName="T4SERVICIORowChanged" msprop:Generator_RowEvArgName="T4SERVICIORowChangeEvent" msprop:Generator_RowClassName="T4SERVICIORow">
+        <xs:element name="T4SERVICIO" msprop:Generator_TableClassName="T4SERVICIODataTable" msprop:Generator_TableVarName="tableT4SERVICIO" msprop:Generator_RowChangedName="T4SERVICIORowChanged" msprop:Generator_TablePropName="T4SERVICIO" msprop:Generator_RowDeletingName="T4SERVICIORowDeleting" msprop:Generator_RowChangingName="T4SERVICIORowChanging" msprop:Generator_RowEvHandlerName="T4SERVICIORowChangeEventHandler" msprop:Generator_RowDeletedName="T4SERVICIORowDeleted" msprop:Generator_RowClassName="T4SERVICIORow" msprop:Generator_UserTableName="T4SERVICIO" msprop:Generator_RowEvArgName="T4SERVICIORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDS" msprop:Generator_ColumnVarNameInTable="columnIDS" msprop:Generator_ColumnPropNameInRow="IDS" msprop:Generator_ColumnPropNameInTable="IDSColumn" msprop:Generator_UserColumnName="IDS" type="xs:decimal" />
               <xs:element name="NOMSERV" msprop:Generator_ColumnVarNameInTable="columnNOMSERV" msprop:Generator_ColumnPropNameInRow="NOMSERV" msprop:Generator_ColumnPropNameInTable="NOMSERVColumn" msprop:Generator_UserColumnName="NOMSERV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TP4CONSULTA1" msprop:Generator_TableClassName="TP4CONSULTA1DataTable" msprop:Generator_TableVarName="tableTP4CONSULTA1" msprop:Generator_TablePropName="TP4CONSULTA1" msprop:Generator_RowDeletingName="TP4CONSULTA1RowDeleting" msprop:Generator_RowChangingName="TP4CONSULTA1RowChanging" msprop:Generator_RowEvHandlerName="TP4CONSULTA1RowChangeEventHandler" msprop:Generator_RowDeletedName="TP4CONSULTA1RowDeleted" msprop:Generator_UserTableName="TP4CONSULTA1" msprop:Generator_RowChangedName="TP4CONSULTA1RowChanged" msprop:Generator_RowEvArgName="TP4CONSULTA1RowChangeEvent" msprop:Generator_RowClassName="TP4CONSULTA1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CIUDAD" msprop:Generator_ColumnVarNameInTable="columnCIUDAD" msprop:Generator_ColumnPropNameInRow="CIUDAD" msprop:Generator_ColumnPropNameInTable="CIUDADColumn" msprop:Generator_UserColumnName="CIUDAD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOMCAMP" msprop:Generator_ColumnVarNameInTable="columnNOMCAMP" msprop:Generator_ColumnPropNameInRow="NOMCAMP" msprop:Generator_ColumnPropNameInTable="NOMCAMPColumn" msprop:Generator_UserColumnName="NOMCAMP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TP4CONSULTA2" msprop:Generator_TableClassName="TP4CONSULTA2DataTable" msprop:Generator_TableVarName="tableTP4CONSULTA2" msprop:Generator_TablePropName="TP4CONSULTA2" msprop:Generator_RowDeletingName="TP4CONSULTA2RowDeleting" msprop:Generator_RowChangingName="TP4CONSULTA2RowChanging" msprop:Generator_RowEvHandlerName="TP4CONSULTA2RowChangeEventHandler" msprop:Generator_RowDeletedName="TP4CONSULTA2RowDeleted" msprop:Generator_UserTableName="TP4CONSULTA2" msprop:Generator_RowChangedName="TP4CONSULTA2RowChanged" msprop:Generator_RowEvArgName="TP4CONSULTA2RowChangeEvent" msprop:Generator_RowClassName="TP4CONSULTA2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOMINS" msprop:Generator_ColumnVarNameInTable="columnNOMINS" msprop:Generator_ColumnPropNameInRow="NOMINS" msprop:Generator_ColumnPropNameInTable="NOMINSColumn" msprop:Generator_UserColumnName="NOMINS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TP4CONSULTA3" msprop:Generator_TableClassName="TP4CONSULTA3DataTable" msprop:Generator_TableVarName="tableTP4CONSULTA3" msprop:Generator_TablePropName="TP4CONSULTA3" msprop:Generator_RowDeletingName="TP4CONSULTA3RowDeleting" msprop:Generator_RowChangingName="TP4CONSULTA3RowChanging" msprop:Generator_RowEvHandlerName="TP4CONSULTA3RowChangeEventHandler" msprop:Generator_RowDeletedName="TP4CONSULTA3RowDeleted" msprop:Generator_UserTableName="TP4CONSULTA3" msprop:Generator_RowChangedName="TP4CONSULTA3RowChanged" msprop:Generator_RowEvArgName="TP4CONSULTA3RowChangeEvent" msprop:Generator_RowClassName="TP4CONSULTA3Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOMINS" msprop:Generator_ColumnVarNameInTable="columnNOMINS" msprop:Generator_ColumnPropNameInRow="NOMINS" msprop:Generator_ColumnPropNameInTable="NOMINSColumn" msprop:Generator_UserColumnName="NOMINS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOMCAMP" msprop:Generator_ColumnVarNameInTable="columnNOMCAMP" msprop:Generator_ColumnPropNameInRow="NOMCAMP" msprop:Generator_ColumnPropNameInTable="NOMCAMPColumn" msprop:Generator_UserColumnName="NOMCAMP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TP4CONSULTA4" msprop:Generator_TableClassName="TP4CONSULTA4DataTable" msprop:Generator_TableVarName="tableTP4CONSULTA4" msprop:Generator_TablePropName="TP4CONSULTA4" msprop:Generator_RowDeletingName="TP4CONSULTA4RowDeleting" msprop:Generator_RowChangingName="TP4CONSULTA4RowChanging" msprop:Generator_RowEvHandlerName="TP4CONSULTA4RowChangeEventHandler" msprop:Generator_RowDeletedName="TP4CONSULTA4RowDeleted" msprop:Generator_UserTableName="TP4CONSULTA4" msprop:Generator_RowChangedName="TP4CONSULTA4RowChanged" msprop:Generator_RowEvArgName="TP4CONSULTA4RowChangeEvent" msprop:Generator_RowClassName="TP4CONSULTA4Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NOMINS" msprop:Generator_ColumnVarNameInTable="columnNOMINS" msprop:Generator_ColumnPropNameInRow="NOMINS" msprop:Generator_ColumnPropNameInTable="NOMINSColumn" msprop:Generator_UserColumnName="NOMINS" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -378,7 +510,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="SYS_C0022612" msdata:parent="T4INSTITUCIÓN" msdata:child="T4CAMPUS" msdata:parentkey="IDINST" msdata:childkey="IDINST" msprop:Generator_UserChildTable="T4CAMPUS" msprop:Generator_ChildPropName="GetT4CAMPUSRows" msprop:Generator_UserRelationName="SYS_C0022612" msprop:Generator_RelationVarName="relationSYS_C0022612" msprop:Generator_UserParentTable="T4INSTITUCIÓN" msprop:Generator_ParentPropName="T4INSTITUCIÓNRow" />
+      <msdata:Relationship name="SYS_C0022612" msdata:parent="T4INSTITUCIÓN" msdata:child="T4CAMPUS" msdata:parentkey="IDINST" msdata:childkey="IDINST" msprop:Generator_UserChildTable="T4CAMPUS" msprop:Generator_ChildPropName="GetT4CAMPUSRows" msprop:Generator_UserRelationName="SYS_C0022612" msprop:Generator_ParentPropName="T4INSTITUCIÓNRow" msprop:Generator_RelationVarName="relationSYS_C0022612" msprop:Generator_UserParentTable="T4INSTITUCIÓN" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

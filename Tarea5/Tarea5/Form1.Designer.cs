@@ -83,28 +83,28 @@
             // institucionesToolStripMenuItem
             // 
             this.institucionesToolStripMenuItem.Name = "institucionesToolStripMenuItem";
-            this.institucionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.institucionesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.institucionesToolStripMenuItem.Text = "Instituciones";
             this.institucionesToolStripMenuItem.Click += new System.EventHandler(this.institucionesToolStripMenuItem_Click);
             // 
             // carrerasToolStripMenuItem
             // 
             this.carrerasToolStripMenuItem.Name = "carrerasToolStripMenuItem";
-            this.carrerasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.carrerasToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.carrerasToolStripMenuItem.Text = "Carreras";
             this.carrerasToolStripMenuItem.Click += new System.EventHandler(this.carrerasToolStripMenuItem_Click);
             // 
             // serviciosToolStripMenuItem
             // 
             this.serviciosToolStripMenuItem.Name = "serviciosToolStripMenuItem";
-            this.serviciosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serviciosToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.serviciosToolStripMenuItem.Text = "Servicios";
             this.serviciosToolStripMenuItem.Click += new System.EventHandler(this.serviciosToolStripMenuItem_Click);
             // 
             // campusToolStripMenuItem
             // 
             this.campusToolStripMenuItem.Name = "campusToolStripMenuItem";
-            this.campusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.campusToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.campusToolStripMenuItem.Text = "Campus";
             this.campusToolStripMenuItem.Click += new System.EventHandler(this.campusToolStripMenuItem_Click);
             // 
@@ -122,6 +122,7 @@
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
             this.consultasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.consultasToolStripMenuItem.Text = "Consultas";
+            this.consultasToolStripMenuItem.Click += new System.EventHandler(this.consultasToolStripMenuItem_Click);
             // 
             // subProgramasToolStripMenuItem
             // 

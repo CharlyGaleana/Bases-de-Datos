@@ -51,5 +51,11 @@ namespace Tarea5
             Procedimientos.Subprogramas c = new Procedimientos.Subprogramas();
             c.Show();
         }
+
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Procedimientos.Consultas c = new Procedimientos.Consultas();
+            c.Show();
+        }
     }
 }

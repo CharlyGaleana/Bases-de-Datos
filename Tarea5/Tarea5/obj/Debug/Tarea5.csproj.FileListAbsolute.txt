@@ -12,3 +12,4 @@ C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmCarr
 C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmInstituciones.resources
 C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmServicios.resources
 C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.Subprogramas.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.Consultas.resources
