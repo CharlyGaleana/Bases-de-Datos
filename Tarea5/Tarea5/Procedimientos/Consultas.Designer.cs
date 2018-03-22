@@ -43,6 +43,7 @@
             this.tP4CONSULTA3BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tP4CONSULTA3TableAdapter = new Tarea5.dsTableAdapters.TP4CONSULTA3TableAdapter();
             this.tP4CONSULTA4TableAdapter = new Tarea5.dsTableAdapters.TP4CONSULTA4TableAdapter();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tP4CONSULTA4BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
@@ -53,12 +54,16 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(146, 63);
+            this.dataGridView1.Location = new System.Drawing.Point(69, 59);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.ShowCellToolTips = false;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(341, 191);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnConsulta1
             // 
@@ -141,11 +146,21 @@
             // 
             this.tP4CONSULTA4TableAdapter.ClearBeforeFill = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(368, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Ejecuta las consultas de la Tarea 4, que se guardaron previamente en vistas";
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 432);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnConsulta4);
             this.Controls.Add(this.btnConsulta3);
             this.Controls.Add(this.btnConsulta2);
@@ -161,6 +176,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tP4CONSULTA2BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tP4CONSULTA3BindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -180,5 +196,6 @@
         private System.Windows.Forms.Button btnConsulta2;
         private System.Windows.Forms.Button btnConsulta3;
         private System.Windows.Forms.Button btnConsulta4;
+        private System.Windows.Forms.Label label1;
     }
 }
