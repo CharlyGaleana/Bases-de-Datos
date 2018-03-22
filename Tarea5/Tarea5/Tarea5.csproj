@@ -33,11 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GestorBD">
+      <HintPath>..\GestorBD\bin\Debug\GestorBD.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -46,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comunes\Comunes.cs" />
     <Compile Include="ds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,6 +59,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procedimientos\AltaCampus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procedimientos\AltaCampus.Designer.cs">
+      <DependentUpon>AltaCampus.cs</DependentUpon>
     </Compile>
     <Compile Include="Procedimientos\Consultas.cs">
       <SubType>Form</SubType>
@@ -97,6 +106,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procedimientos\AltaCampus.resx">
+      <DependentUpon>AltaCampus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Procedimientos\Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>

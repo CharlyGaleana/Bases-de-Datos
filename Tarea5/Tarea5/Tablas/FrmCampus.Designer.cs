@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ds = new Tarea5.ds();
-            this.dsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.t4CAMPUSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.t4CAMPUSTableAdapter = new Tarea5.dsTableAdapters.T4CAMPUSTableAdapter();
             this.iDCAMPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nOMCAMPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dOMICILIODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,11 +38,15 @@
             this.eSTADODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pROFESORESDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDINSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t4CAMPUSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new Tarea5.ds();
+            this.t4CAMPUSTableAdapter = new Tarea5.dsTableAdapters.T4CAMPUSTableAdapter();
             this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4CAMPUSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -67,25 +67,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dsBindingSource
-            // 
-            this.dsBindingSource.DataSource = this.ds;
-            this.dsBindingSource.Position = 0;
-            // 
-            // t4CAMPUSBindingSource
-            // 
-            this.t4CAMPUSBindingSource.DataMember = "T4CAMPUS";
-            this.t4CAMPUSBindingSource.DataSource = this.dsBindingSource;
-            // 
-            // t4CAMPUSTableAdapter
-            // 
-            this.t4CAMPUSTableAdapter.ClearBeforeFill = true;
             // 
             // iDCAMPDataGridViewTextBoxColumn
             // 
@@ -135,6 +116,25 @@
             this.iDINSTDataGridViewTextBoxColumn.HeaderText = "IDINST";
             this.iDINSTDataGridViewTextBoxColumn.Name = "iDINSTDataGridViewTextBoxColumn";
             // 
+            // t4CAMPUSBindingSource
+            // 
+            this.t4CAMPUSBindingSource.DataMember = "T4CAMPUS";
+            this.t4CAMPUSBindingSource.DataSource = this.dsBindingSource;
+            // 
+            // dsBindingSource
+            // 
+            this.dsBindingSource.DataSource = this.ds;
+            this.dsBindingSource.Position = 0;
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // t4CAMPUSTableAdapter
+            // 
+            this.t4CAMPUSTableAdapter.ClearBeforeFill = true;
+            // 
             // btnActualizar
             // 
             this.btnActualizar.Location = new System.Drawing.Point(289, 247);
@@ -153,12 +153,12 @@
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmCampus";
-            this.Text = "FrmCampus";
+            this.Text = "Tabla Campus";
             this.Load += new System.EventHandler(this.FrmCampus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4CAMPUSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -28,3 +28,6 @@ C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmC
 C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmInstituciones.resources
 C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Tablas.FrmServicios.resources
 C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.csproj.GenerateResource.Cache
+C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\GestorBD.dll
+C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\bin\Debug\GestorBD.pdb
+C:\Users\sdist\Desktop\Bases-de-Datos\Tarea5\Tarea5\obj\Debug\Tarea5.Procedimientos.AltaCampus.resources

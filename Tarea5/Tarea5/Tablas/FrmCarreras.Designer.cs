@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ds = new Tarea5.ds();
-            this.t4CARRERABindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.t4CARRERATableAdapter = new Tarea5.dsTableAdapters.T4CARRERATableAdapter();
             this.iDCARDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nOMCARRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t4CARRERABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new Tarea5.ds();
+            this.t4CARRERATableAdapter = new Tarea5.dsTableAdapters.T4CARRERATableAdapter();
             this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4CARRERABindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -55,20 +55,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // t4CARRERABindingSource
-            // 
-            this.t4CARRERABindingSource.DataMember = "T4CARRERA";
-            this.t4CARRERABindingSource.DataSource = this.ds;
-            // 
-            // t4CARRERATableAdapter
-            // 
-            this.t4CARRERATableAdapter.ClearBeforeFill = true;
             // 
             // iDCARDataGridViewTextBoxColumn
             // 
@@ -88,6 +74,20 @@
             this.nOMCARRDataGridViewTextBoxColumn.HeaderText = "NOMCARR";
             this.nOMCARRDataGridViewTextBoxColumn.Name = "nOMCARRDataGridViewTextBoxColumn";
             // 
+            // t4CARRERABindingSource
+            // 
+            this.t4CARRERABindingSource.DataMember = "T4CARRERA";
+            this.t4CARRERABindingSource.DataSource = this.ds;
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // t4CARRERATableAdapter
+            // 
+            this.t4CARRERATableAdapter.ClearBeforeFill = true;
+            // 
             // btnActualizar
             // 
             this.btnActualizar.Location = new System.Drawing.Point(237, 250);
@@ -106,11 +106,12 @@
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmCarreras";
-            this.Text = "FrmCarreras";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Text = "Tabla Carreras";
             this.Load += new System.EventHandler(this.FrmCarreras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4CARRERABindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             this.ResumeLayout(false);
 
         }

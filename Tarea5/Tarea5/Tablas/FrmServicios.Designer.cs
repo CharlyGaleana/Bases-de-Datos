@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ds = new Tarea5.ds();
-            this.t4SERVICIOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.t4SERVICIOTableAdapter = new Tarea5.dsTableAdapters.T4SERVICIOTableAdapter();
             this.iDSDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nOMSERVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t4SERVICIOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new Tarea5.ds();
+            this.t4SERVICIOTableAdapter = new Tarea5.dsTableAdapters.T4SERVICIOTableAdapter();
             this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4SERVICIOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -54,20 +54,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 0;
             // 
-            // ds
-            // 
-            this.ds.DataSetName = "ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // t4SERVICIOBindingSource
-            // 
-            this.t4SERVICIOBindingSource.DataMember = "T4SERVICIO";
-            this.t4SERVICIOBindingSource.DataSource = this.ds;
-            // 
-            // t4SERVICIOTableAdapter
-            // 
-            this.t4SERVICIOTableAdapter.ClearBeforeFill = true;
-            // 
             // iDSDataGridViewTextBoxColumn
             // 
             this.iDSDataGridViewTextBoxColumn.DataPropertyName = "IDS";
@@ -79,6 +65,20 @@
             this.nOMSERVDataGridViewTextBoxColumn.DataPropertyName = "NOMSERV";
             this.nOMSERVDataGridViewTextBoxColumn.HeaderText = "NOMSERV";
             this.nOMSERVDataGridViewTextBoxColumn.Name = "nOMSERVDataGridViewTextBoxColumn";
+            // 
+            // t4SERVICIOBindingSource
+            // 
+            this.t4SERVICIOBindingSource.DataMember = "T4SERVICIO";
+            this.t4SERVICIOBindingSource.DataSource = this.ds;
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // t4SERVICIOTableAdapter
+            // 
+            this.t4SERVICIOTableAdapter.ClearBeforeFill = true;
             // 
             // btnActualizar
             // 
@@ -98,11 +98,11 @@
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmServicios";
-            this.Text = "FrmServicios";
+            this.Text = "Tabla Servicios";
             this.Load += new System.EventHandler(this.FrmServicios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4SERVICIOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             this.ResumeLayout(false);
 
         }

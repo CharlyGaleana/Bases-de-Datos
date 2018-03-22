@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ds = new Tarea5.ds();
-            this.t4INSTITUCIÓNBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.t4INSTITUCIÓNTableAdapter = new Tarea5.dsTableAdapters.T4INSTITUCIÓNTableAdapter();
             this.iDINSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nOMINSDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sIGLASDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.t4INSTITUCIÓNBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ds = new Tarea5.ds();
+            this.t4INSTITUCIÓNTableAdapter = new Tarea5.dsTableAdapters.T4INSTITUCIÓNTableAdapter();
             this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4INSTITUCIÓNBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -55,20 +55,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // ds
-            // 
-            this.ds.DataSetName = "ds";
-            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // t4INSTITUCIÓNBindingSource
-            // 
-            this.t4INSTITUCIÓNBindingSource.DataMember = "T4INSTITUCIÓN";
-            this.t4INSTITUCIÓNBindingSource.DataSource = this.ds;
-            // 
-            // t4INSTITUCIÓNTableAdapter
-            // 
-            this.t4INSTITUCIÓNTableAdapter.ClearBeforeFill = true;
             // 
             // iDINSTDataGridViewTextBoxColumn
             // 
@@ -88,6 +74,20 @@
             this.sIGLASDataGridViewTextBoxColumn.HeaderText = "SIGLAS";
             this.sIGLASDataGridViewTextBoxColumn.Name = "sIGLASDataGridViewTextBoxColumn";
             // 
+            // t4INSTITUCIÓNBindingSource
+            // 
+            this.t4INSTITUCIÓNBindingSource.DataMember = "T4INSTITUCIÓN";
+            this.t4INSTITUCIÓNBindingSource.DataSource = this.ds;
+            // 
+            // ds
+            // 
+            this.ds.DataSetName = "ds";
+            this.ds.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // t4INSTITUCIÓNTableAdapter
+            // 
+            this.t4INSTITUCIÓNTableAdapter.ClearBeforeFill = true;
+            // 
             // btnActualizar
             // 
             this.btnActualizar.Location = new System.Drawing.Point(191, 220);
@@ -106,11 +106,11 @@
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmInstituciones";
-            this.Text = "FrmInstituciones";
+            this.Text = "Tabla Instituciones";
             this.Load += new System.EventHandler(this.FrmInstituciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t4INSTITUCIÓNBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds)).EndInit();
             this.ResumeLayout(false);
 
         }

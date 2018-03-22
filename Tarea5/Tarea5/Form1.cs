@@ -57,5 +57,11 @@ namespace Tarea5
             Procedimientos.Consultas c = new Procedimientos.Consultas();
             c.Show();
         }
+
+        private void altaCampusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Procedimientos.AltaCampus c = new Procedimientos.AltaCampus();
+            c.Show();
+        }
     }
 }

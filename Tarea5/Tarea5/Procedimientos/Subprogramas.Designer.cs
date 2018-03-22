@@ -58,6 +58,7 @@
             this.Controls.Add(this.btnEjecutaProcedimiento);
             this.Controls.Add(this.btnEjecutaFuncion);
             this.Name = "Subprogramas";
+            this.Text = "Ejecución de Subprogramas";
             this.ResumeLayout(false);
 
         }
