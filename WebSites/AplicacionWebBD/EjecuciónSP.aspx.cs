@@ -10,13 +10,12 @@ using System.Web.UI.WebControls;
 public partial class EjecuciónSP : System.Web.UI.Page {
 
   //Atributos.
-  GestorBD_CS.GestorBD GestorBD;
+  GestorBD.GestorBD GestorBD;
   OleDbConnection cnOracle;       //Para conctarse a Oracle.
-  OleDbCommand procAlm;
   OleDbParameter par;
 
   protected void Page_Load(object sender, EventArgs e) {
-    GestorBD= (GestorBD_CS.GestorBD) Session["GestorBD"];
+    GestorBD= (GestorBD.GestorBD) Session["GestorBD"];
   }
 
   //Ejemplo de ejecución de un procedimiento almacenado (en Oracle).
@@ -26,9 +25,10 @@ public partial class EjecuciónSP : System.Web.UI.Page {
   protected void BtnEjecutaProc_Click(object sender, EventArgs e) {
     String nomArt;
     int cant;
+        OleDbCommand procAlm;
 
-    //1- Abrir la conexión a la BD.
-    cnOracle = GestorBD.conex;
+        //1- Abrir la conexión a la BD.
+        cnOracle = GestorBD.conex;
     cnOracle.Open();
     procAlm = new OleDbCommand();
     procAlm.Connection = cnOracle;
@@ -70,8 +70,45 @@ public partial class EjecuciónSP : System.Web.UI.Page {
   // recibe como parámetro de entrada el folio de un pedido,
   // y regresa la cantidad de artículos pedidos.
   protected void BtnEjecutaFunc_Click(object sender, EventArgs e) {
-    int folioPed, cantArts;
+        int folioPed, cantArts;
+        OleDbCommand func;
 
-  }
+        //1- Abrir la conexión a la BD.
+        cnOracle = GestorBD.conex;
+        cnOracle.Open();
+        func = new OleDbCommand();
+        func.Connection = cnOracle;
+
+        //2- Especificar el llamado al procedimiento  (en general: al subprograma).
+        func.CommandText = "cantArtsPedido";
+        func.CommandType = CommandType.StoredProcedure;
+
+        //3- Especificar los parámetros:
+        //a) primero todos los de salida (uno en este caso):
+        par = new OleDbParameter("RETURN_VALUE", OleDbType.Integer,
+          4, ParameterDirection.ReturnValue, false, 4, 0, "NomArt", DataRowVersion.Current, 0);
+        func.Parameters.Add(par);
+        
+        //b) luego todos los de entrada:
+        folioPed = 10;
+        par = new OleDbParameter("folio", folioPed);
+        func.Parameters.Add(par);
+
+        //4- Ejecutar el procedimiento (en general: el subprograma).
+        try {
+            func.ExecuteNonQuery();
+
+            //5- Recuperar el (los) valor(es) regresado(s) por medio del (de los)
+            //   parámetro(s) de salida.
+            cantArts = Convert.ToInt16(func.Parameters["RETURN_VALUE"].Value);
+            Label1.Text = "Cantidad de artículos: " + cantArts;
+        }
+        catch (OleDbException err) {
+            Label1.Text = err.Message;
+        }
+
+        //6- Cerrar la conexión a la BD.
+        cnOracle.Close();
+    }
 }
 

@@ -1,0 +1,147 @@
+﻿(a)
+
+
+Consulta: para cada ciudad, listar las instituciones, y sus campus, que se localizan en la misma. 
+
+
+select ciudad, nomCamp
+from T4Campus
+order by ciudad;
+
+
+(b)
+
+
+Consulta: obtener el nombre de las instituciones, sin importar el campus, donde se imparten las carreras de Ing. en Computación, Ing. en Telemática y Lic. en Matemáticas (o sea, todas ellas). 
+
+
+select i.nomIns
+from t4institución i, t4Carrera c, t4InstCarr ic
+where i.idinst = ic.idinst and c.idcar = ic.idcar and c.nomcarr = 'Ingeniería en Computación'
+intersect
+select i.nomIns
+from t4institución i, t4Carrera c, t4InstCarr ic
+where i.idinst = ic.idinst and c.idcar = ic.idcar and c.nomcarr = 'Ingeniería en Telemática'
+intersect
+select i.nomIns
+from t4institución i, t4Carrera c, t4InstCarr ic
+where i.idinst = ic.idinst and c.idcar = ic.idcar and c.nomcarr = 'Licenciatura en Matemáticas';
+
+
+c)
+
+
+Consulta: escribir los campus, y su institución, que tienen más de dos servicios adicionales en el mismo sitio del campus. 
+
+
+select nomIns, nomCamp
+from t4campus t, t4Institución i
+where t.idinst = i.idinst
+and nomCamp in 
+        (select nomCamp
+        from t4campus c, t4servicio s, t4campServicio cs
+        where c.idcamp = cs.idcamp and s.ids = cs.ids and cs.enCampus = 'Si'
+        group by nomCamp
+        having count(*) > 2);
+
+
+
+
+d) 
+
+
+Consulta: mostrar el nombre de las instituciones que ofrezcan todas las carreras registradas en la base de datos, sin importar en que campus se impartan. 
+
+
+select nomIns
+from t4institución i, t4instcarr ic
+where i.idinst = ic.idinst
+group by nomIns 
+having count(*) = (select count(*) from t4carrera);
+
+
+(e)
+
+
+Define una función que reciba como entrada el nombre de una institución y el de uno de sus campus y entregue como salida la cantidad de servicios adicionales que éste ofrece. 
+
+
+create or replace function cantidadServicios( nombreInst char, nombreCampus char ) return int is
+    servicios int;
+    idi int;
+    idc int;
+begin
+    select idInst into idi
+    from t4institución
+    where nomIns = nombreInst;
+    
+    select idCamp into idc 
+    from t4campus
+    where nomCamp = nombreCampus and idinst = idi;
+    
+    select count(*) into servicios
+    from t4campus c, t4servicio s, t4campservicio cs
+    where c.idcamp = cs.idcamp and s.ids = cs.ids and c.idcamp = idc;
+    
+    return servicios;
+end;
+
+
+set serveroutput on;
+
+
+declare
+    serv int;
+begin
+    serv := cantidadServicios( 'Universidad Nacional Autónoma de Mexico', 'Instituto de Matemáticas' );
+    dbms_output.put_line(serv);
+end;
+
+
+--f)
+No lo he probado pero compila =)
+--Define un procedimiento que reciba como entrada el nombre de una institución, 
+--el de dos de sus campus y un grado de estudios (default: doctor), y entregue 
+--como salida el nombre del campus que tiene más profesores con ese grado o 
+--la cadena ‘igual’, si es que están empatados. 
+
+
+create or replace procedure masProfesores (nom char, c1 char, c2 char, grado char, res out char) is
+--Declaración de variables
+id1 int; id2 int;idi1 int;idi2 int;sum1 int;sum2 int;
+--Procedimiento
+begin
+    select IDCAMP into id1 from T4Campus where NOMCAMP=c1;
+    select IDCAMP into id2 from T4Campus where NOMCAMP=c1;
+    if(id1=null or id2=null) then res:='No existe alguno de los dos campus';
+    else
+    select IDINST into idi1 from T4Campus where idCamp=id1;
+    select IDINST into idi2 from T4Campus where idCamp=id2;
+    if id1!=id2 then res:='Los dos campus no pertenecen a la misma institución';
+    else
+    select SUM(grado) into sum1 from T4CAMPÁREA where IDCAMP=id1;
+    select SUM(grado) into sum2 from T4CAMPÁREA where IDCAMP=id2;
+    if sum1=sum2 then res:='Igual';
+    else
+    if sum1>sum2 then res:= 'El que tiene más profesores es: '+c1;
+    else res:='El que tiene más profesores es: '+c2;
+    end if;
+    end if;
+    end if;
+    end if;
+end;
+
+
+
+
+--g)
+--Elabora un trigger para que cada que se agregue un área académica a un campus, 
+--se incremente el atributo que indica la cantidad total de profesores que tiene. 
+create or replace trigger actualizaProfesores
+after insert on T4CAMPÁREA
+for each row declare suma int;
+begin
+  select profesores into suma from T4CAMPUS tc where tc.IDCAMP = :new.IDCAMP;
+  suma := suma + :new.LIC + :new.MAESTRIA + :new.DOC;
+  update T4CAMPUS tc set profesores = suma where tc.IDCAMP = :new.IDCAMP;
+end;

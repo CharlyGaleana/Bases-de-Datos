@@ -44,7 +44,7 @@ public partial class _Default : System.Web.UI.Page {
         if ( valida() ) {
             //Recupera objetos de Session
             Session["rfc"] = Login2.UserName;
-            Server.Transfer("AdminUsuarios.aspx");
+            Server.Transfer("EjecuciónSP.aspx");
         }
     }
 }

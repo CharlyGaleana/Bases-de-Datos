@@ -44,6 +44,18 @@
             z-index: 1;
             width: 27px;
         }
+        .auto-style6 {
+            z-index: 1;
+            left: 75px;
+            top: 254px;
+            position: absolute;
+        }
+        .auto-style7 {
+            position: absolute;
+            top: 253px;
+            left: 438px;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +68,7 @@
         <asp:Button ID="BtnCambio" runat="server" style="z-index: 1; left: 465px; top: 80px; position: absolute" Text="Cambio de datos" />
         <asp:TextBox ID="TxtRFC" runat="server" style="z-index: 1; left: 75px; top: 150px; position: absolute" Visible="False" CausesValidation="True" ValidationGroup="AllValidators">RFC</asp:TextBox>
         <asp:TextBox ID="TxtNombre" runat="server" style="z-index: 1; left: 75px; top: 199px; position: absolute" Visible="False">Nombre</asp:TextBox>
-        <asp:TextBox ID="TxtPassw" runat="server" style="z-index: 1; left: 75px; top: 254px; position: absolute" Visible="False">Contraseña</asp:TextBox>
+        <asp:TextBox ID="TxtPassw" runat="server" Visible="False" CssClass="auto-style6">Contraseña</asp:TextBox>
         <asp:DropDownList ID="DDLTipo" runat="server" style="z-index: 1; left: 75px; top: 304px; position: absolute" Visible="False" AutoPostBack="True" OnSelectedIndexChanged="DDLTipo_SelectedIndexChanged">
             <asp:ListItem>Tipo de usuario</asp:ListItem>
             <asp:ListItem Value="Cli">Cliente</asp:ListItem>
@@ -74,6 +86,8 @@
     
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtRFC" CssClass="auto-style2" ErrorMessage="Dar un RFC Correcto" ValidationGroup="AllValidators">*</asp:RequiredFieldValidator>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="auto-style3" ValidationGroup="AllValidators" />
+    
+        <asp:RangeValidator ID="RangeValidator1" runat="server" CssClass="auto-style7" ErrorMessage="RangeValidator" Type="Integer"></asp:RangeValidator>
     
     </div>
     </form>
