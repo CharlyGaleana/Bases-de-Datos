@@ -33,8 +33,10 @@ public partial class _Default : System.Web.UI.Page {
 
         GestorBD = (GestorBD.GestorBD) Session["GestorBD"];
         GestorBD.consBD(cadSql, DsGeneral, "temp");
-        if (DsGeneral.Tables["temp"].Rows.Count != 0) 
-            return true; 
+        if (DsGeneral.Tables["temp"].Rows.Count != 0)
+        {
+            return true;
+        }
 
         return false;
     }
@@ -47,7 +49,7 @@ public partial class _Default : System.Web.UI.Page {
         {
             //Recupera objetos de Session
             Session["rfc"] = Login2.UserName;
-            Session["típo"] = DsGeneral.Tables["Temp"].Rows[0]["tipo"].ToString();
+            Session["tipo"] = DsGeneral.Tables["Temp"].Rows[0]["tipo"].ToString();
             Server.Transfer("Menú.aspx");
         }
     }
