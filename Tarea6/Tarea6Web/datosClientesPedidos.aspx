@@ -30,6 +30,9 @@
             </asp:TableRow>
         </asp:Table>
     
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" style="z-index: 1; left: 145px; top: 143px; position: absolute; margin-bottom: 0px">
+        </asp:DropDownList>
+    
     </div>
     </form>
 </body>

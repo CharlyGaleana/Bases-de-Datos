@@ -30,15 +30,30 @@ public partial class datosClientesPedidos : System.Web.UI.Page
             cadSql = "select * from pcusuarios u, pcclientes c where u.rfc = c.rfc and c.rfc = '" + rfc + "'";
             GestorBD.consBD(cadSql, DSGeneral, "info");
 
+
             if (DSGeneral.Tables["info"].Rows.Count > 0)
             {
                 tipoUsuario = "cliente";
+                //Rellenar los datos del cliente en la tabla
                 fila = DSGeneral.Tables["info"].Rows[0];
+                Table1.Rows[1].Cells[0].Text = fila["rfc"].ToString();
+                Table1.Rows[1].Cells[1].Text = fila["nombre"].ToString();
+                Table1.Rows[1].Cells[2].Text = fila["domicilio"].ToString();
+                //Cargar el dropdownlist con sus pedidos
+                cadSql = "select * from pcpedidos where rfcc = '" + rfc + "'";
+                GestorBD.consBD(cadSql, DSPedidos, "Pedidos");
+                objComun.cargaDDL(DropDownList1, DSPedidos, "Pedidos", "foliop");
+                Session["DSPedidos"] = DSPedidos;
             }
             else {
                 tipoUsuario = "empleado";
                 Label1.Visible = tblCliente.Visible = false;
             }
         }
+    }
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
