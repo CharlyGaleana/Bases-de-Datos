@@ -47,7 +47,7 @@ public partial class _Default : System.Web.UI.Page {
         {
             //Recupera objetos de Session
             Session["rfc"] = Login2.UserName;
-            Session["típo"] = DsGeneral.Tables["Temp"].Rows[0]["tipo"].ToString();
+            Session["tipo"] = DsGeneral.Tables["Temp"].Rows[0]["tipo"].ToString();
             Server.Transfer("Menú.aspx");
         }
     }
