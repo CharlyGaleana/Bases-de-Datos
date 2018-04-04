@@ -19,6 +19,8 @@
         <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 55px; top: 52px; position: absolute" Text="Elige alguna de las siguientes opciones:"></asp:Label>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 318px; top: 98px; position: absolute" Text="Datos Cliente y Pedidos" />
     
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" style="z-index: 1; left: 318px; top: 145px; position: absolute; width: 212px; right: 715px" Text="Alta Pedido" />
+    
     </div>
     </form>
 </body>
