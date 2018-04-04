@@ -1,0 +1,38 @@
+--a)
+
+create or replace trigger reabasteceArtículo
+after update on pcArtículos   
+for each row
+  declare ida int; newid int; precio real;
+begin   
+    
+    if :new.cantact < :new.cantmín then
+        ida := :new.idart;
+        dbms_output.put_line(ida);
+        
+        select max(folior) into newid from pcreabast;
+        newid := newid + 1;
+        
+        precio := (0.7) * (:new.cantpedir) * (:new.precio);
+        
+        insert into pcreabast values (newid, :new.cantpedir, precio, sysdate, '', ida);
+    end if;
+
+end;
+
+--b)
+
+create or replace trigger actualizaPago
+before insert on pcpagos
+for each row
+    declare newfol int; m int;
+begin
+    select max(foliof) into newfol from pcfacturas;
+    newfol:= newfol + 1;
+    m := :new.monto;    
+
+    insert into pcfacturas values(newfol, :new.fecha, :new.monto, :new.foliop);
+    
+    update pcpedidos set saldocli = saldocli - m where foliop = :new.foliop;
+    update pcpedidos set saldofacs = saldofacs + m where foliop = :new.foliop; 
+end;
