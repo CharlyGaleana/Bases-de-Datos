@@ -1,0 +1,10 @@
+C:\BD\Programas\GestorBD\bin\Debug\GestorBD.dll
+C:\BD\Programas\GestorBD\bin\Debug\GestorBD.pdb
+C:\BD\Programas\GestorBD\obj\Debug\GestorBD.csprojResolveAssemblyReference.cache
+C:\BD\Programas\GestorBD\obj\Debug\GestorBD.dll
+C:\BD\Programas\GestorBD\obj\Debug\GestorBD.pdb
+C:\Users\JLIRAC\Desktop\Bases-de-Datos\Tarea6\GestorBD\bin\Debug\GestorBD.dll
+C:\Users\JLIRAC\Desktop\Bases-de-Datos\Tarea6\GestorBD\bin\Debug\GestorBD.pdb
+C:\Users\JLIRAC\Desktop\Bases-de-Datos\Tarea6\GestorBD\obj\Debug\GestorBD.csprojResolveAssemblyReference.cache
+C:\Users\JLIRAC\Desktop\Bases-de-Datos\Tarea6\GestorBD\obj\Debug\GestorBD.dll
+C:\Users\JLIRAC\Desktop\Bases-de-Datos\Tarea6\GestorBD\obj\Debug\GestorBD.pdb
