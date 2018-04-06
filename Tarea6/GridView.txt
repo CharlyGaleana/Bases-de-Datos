@@ -1,0 +1,47 @@
+ //Crear el dataTable
+            dt = new DataTable();
+            //Crear las columnas
+            //IdArtículo
+            dc = new DataColumn();
+            dc.DataType = System.Type.GetType("System.Int32");
+            dc.ColumnName = "Id";
+            dt.Columns.Add(dc);
+            //Nombre
+            dc = new DataColumn();
+            dc.DataType = System.Type.GetType("System.String");
+            dc.ColumnName = "Nombre";
+            dt.Columns.Add(dc);
+            //Precio
+            dc = new DataColumn();
+            dc.DataType = System.Type.GetType("System.Int32");
+            dc.ColumnName = "Precio";
+            dt.Columns.Add(dc);
+            //Cantidad
+            dc = new DataColumn();
+            dc.DataType = System.Type.GetType("System.Int32");
+            dc.ColumnName = "Cantidad";
+            dt.Columns.Add(dc);
+            //Monto Total
+            dc = new DataColumn();
+            dc.DataType = System.Type.GetType("System.Int32");
+            dc.ColumnName = "Monto Total";
+            dt.Columns.Add(dc);
+            Session["dataTable"] = dt;
+
+
+ //Agregar la información
+        dt = (DataTable)Session["dataTable"];
+        int id=1; String Nombre="Nom"; int Precio=0;
+        int cantidad=1; int montoTotal=cantidad*Precio;
+        DataRow dr = dt.NewRow();
+        dr["Id"] = id;
+        dr["Nombre"] = Nombre;
+        dr["Precio"] = Precio;
+        dr["Cantidad"] = cantidad;
+        dr["Monto Total"] = montoTotal;
+        dt.Rows.Add(dr);
+        dv = new DataView(dt);
+        Detalles.DataSource = dv;
+        Detalles.DataBind();
+        Session["dataTable"] = dt;
+        Label5.Text = dt.ToString();
