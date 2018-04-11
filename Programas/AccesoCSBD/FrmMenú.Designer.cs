@@ -33,6 +33,7 @@
             this.consultaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subprogramasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestorBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTransacciones = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +92,8 @@
             this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consultaToolStripMenuItem,
             this.subprogramasToolStripMenuItem,
-            this.gestorBDToolStripMenuItem});
+            this.gestorBDToolStripMenuItem,
+            this.mnuTransacciones});
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.procesosToolStripMenuItem.Text = "Procesos";
@@ -116,6 +118,13 @@
             this.gestorBDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gestorBDToolStripMenuItem.Text = "GestorBD";
             this.gestorBDToolStripMenuItem.Click += new System.EventHandler(this.gestorBDToolStripMenuItem_Click);
+            // 
+            // mnuTransacciones
+            // 
+            this.mnuTransacciones.Name = "mnuTransacciones";
+            this.mnuTransacciones.Size = new System.Drawing.Size(152, 22);
+            this.mnuTransacciones.Text = "Transacciones";
+            this.mnuTransacciones.Click += new System.EventHandler(this.mnuTransacciones_Click);
             // 
             // FrmMenú
             // 
@@ -146,6 +155,7 @@
         private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subprogramasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestorBDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuTransacciones;
     }
 }
 

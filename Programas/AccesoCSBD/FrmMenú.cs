@@ -47,5 +47,10 @@ namespace AccesoCSBD {
             Procesos.FrmGestorBD fg = new Procesos.FrmGestorBD();
             fg.Show();
         }
+
+        private void mnuTransacciones_Click(object sender, EventArgs e) {
+            Procesos.FrmTransac ft = new Procesos.FrmTransac();
+            ft.Show();
+        }
     }
 }
