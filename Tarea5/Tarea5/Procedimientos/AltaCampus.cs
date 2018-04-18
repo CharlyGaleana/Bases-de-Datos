@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -111,6 +112,7 @@ namespace Tarea5.Procedimientos
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             DataRow fila;
+            OleDbTransaction t;
 
             //variables necesarias para dar de alta
             string nomcamp = txtNom.Text;
@@ -124,78 +126,125 @@ namespace Tarea5.Procedimientos
             int prof = txtProfesores.Text != "" ? Convert.ToInt16 (txtProfesores.Text) : 0;
             int idInst, idCampus;
             int idServ, idCarr;
+            int result;
 
 
-            //obtiene el nuevo id
-            cadSql = "select max(idcamp) as maxid from t4campus";
-            GestorBD.consBD(cadSql, dsTemp, "Temp");
-            fila = dsTemp.Tables["Temp"].Rows[0];
-            idCampus = Convert.ToInt16(fila["maxid"]) + 1;
-
-            //obtiene el id de la institucion seleccionada
-            cadSql = "select idInst from t4institución where nomins = '" + nomins + "'";
-            GestorBD.consBD(cadSql, dsTemp, "Temp1");
-            fila = dsTemp.Tables["Temp1"].Rows[0];
-            idInst = Convert.ToInt16(fila[0]);
-
-            //insertamos el campus en la tabla
-            cadSql = "insert into t4Campus values ( " + idCampus + ",'" + nomcamp + "','" + domicilio + "','"
-                   + telefono + "','" + ciudad + "','" + estado + "'," + prof + "," + idInst + ")";
-            int result = GestorBD.altaBD(cadSql);
-            if (result == OK)
+            try
             {
-                MessageBox.Show("El campus se dio de alta exitosamente");
-            }
-            else {
-                MessageBox.Show("Error al intentar dar de alta el campus");
+                GestorBD.conex.Open(); // se abre la conexión a la BD.
+
+                //se crea el objeto de transacción y se especifica el nivel de aislamiento
+                t = GestorBD.conex.BeginTransaction(IsolationLevel.Serializable);
+
+                //obtiene el nuevo id
+                cadSql = "select max(idcamp) as maxid from t4campus";
+                GestorBD.consBD(t, cadSql, "Temp", dsTemp);
+                fila = dsTemp.Tables["Temp"].Rows[0];
+                idCampus = Convert.ToInt16(fila["maxid"]) + 1;
+
+                //obtiene el id de la institucion seleccionada
+                cadSql = "select idInst from t4institución where nomins = '" + nomins + "'";
+                GestorBD.consBD(t, cadSql, "Temp1", dsTemp);
+                fila = dsTemp.Tables["Temp1"].Rows[0];
+                idInst = Convert.ToInt16(fila[0]);
+
+                //insertamos el campus en la tabla
+                try
+                {
+                    cadSql = "insert into t4Campus values ( " + idCampus + ",'" + nomcamp + "','" + domicilio + "','"
+                           + telefono + "','" + ciudad + "','" + estado + "'," + prof + "," + idInst + ")";
+                    result = GestorBD.altaBD(t, cadSql);
+                    if (result == OK)
+                    {
+                        MessageBox.Show("El campus se dio de alta exitosamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al intentar dar de alta el campus");
+                    }
+                }
+                catch (OleDbException err) {
+                    MessageBox.Show(err.Message);       
+                }
+
+                //si se agregó un servicio inicial al campus, se añade el servicio
+
+                if (nomserv != "")
+                {
+                    try
+                    {
+                        //recupera el id del servicio
+                        cadSql = "select ids from t4servicio where nomserv = '" + nomserv + "'";
+                        GestorBD.consBD(t, cadSql, "Temp2", dsTemp);
+                        fila = dsTemp.Tables["Temp2"].Rows[0];
+                        idServ = Convert.ToInt16(fila[0]);
+
+                        cadSql = "insert into t4campservicio values (" + idCampus + "," + idServ + ",'NO','NO'" + ')';
+                        result = GestorBD.altaBD(t, cadSql);
+
+                        if (result == OK)
+                        {
+                            MessageBox.Show("El servicio se dio de alta exitosamente");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al intentar dar de alta el servicio");
+                        }
+                    } catch (OleDbException err) {
+                        MessageBox.Show(err.Message);
+                    }
+                }
+
+                //si se agregó una carrera inicial al campus, se añade la carrera
+                if (nomcarr != "")
+                {
+                    try
+                    {
+                        //recupera el id de la carrera
+                        cadSql = "select idcar from t4Carrera where nomcarr = '" + nomcarr + "'";
+                        GestorBD.consBD(t, cadSql, "Temp3", dsTemp);
+                        fila = dsTemp.Tables["Temp3"].Rows[0];
+                        idCarr = Convert.ToInt16(fila[0]);
+
+                        cadSql = "insert into t4campcarr values (" + idCampus + "," + idCarr + ')';
+                        result = GestorBD.altaBD(t, cadSql);
+
+                        if (result == OK)
+                        {
+                            MessageBox.Show("La carrera se dio de alta exitosamente");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al intentar dar de alta la carrera");
+                        }
+                    }
+                    catch (OleDbException err)
+                    {
+                        MessageBox.Show(err.Message);
+                    }
+                }
+
+                //finaliza la transacción
+                try
+                {
+                    t.Commit();        //Confirma la transacción.
+                }
+                catch (OleDbException err)
+                {
+                    MessageBox.Show(err.Message);
+                    t.Rollback();      //Si hay error, revierte la transacción.
+                }
+                GestorBD.conex.Close();      //Cierra la conexión a la BD.
+                t = null;                       //Destruye el objeto de transacción.
+                MessageBox.Show("Transacción finalizada");
+
                 oculta();
+
+            }
+            catch (OleDbException err) {
+                MessageBox.Show(err.Message);
             }
 
-            //si se agregó un servicio inicial al campus, se añade el servicio
-
-            if (nomserv != "")
-            {
-                //recupera el id del servicio
-                cadSql = "select ids from t4servicio where nomserv = '" + nomserv + "'";
-                GestorBD.consBD(cadSql, dsTemp, "Temp2");
-                fila = dsTemp.Tables["Temp2"].Rows[0];
-                idServ = Convert.ToInt16(fila[0]);
-
-                cadSql = "insert into t4campservicio values (" + idCampus + "," + idServ + ",'NO','NO'" + ')';
-                result = GestorBD.altaBD(cadSql);
-
-                if (result == OK)
-                {
-                    MessageBox.Show("El servicio se dio de alta exitosamente");
-                }
-                else
-                {
-                    MessageBox.Show("Error al intentar dar de alta el servicio");
-                }
-            }
-
-            //si se agregó una carrera inicial al campus, se añade la carrera
-            if (nomcarr != "") {
-                //recupera el id de la carrera
-                cadSql = "select idcar from t4Carrera where nomcarr = '" + nomcarr + "'";
-                GestorBD.consBD(cadSql, dsTemp, "Temp3");
-                fila = dsTemp.Tables["Temp3"].Rows[0];
-                idCarr = Convert.ToInt16(fila[0]);
-
-                cadSql = "insert into t4campcarr values (" + idCampus + "," + idCarr + ')';
-                result = GestorBD.altaBD(cadSql);
-
-                if (result == OK)
-                {
-                    MessageBox.Show("La carrera se dio de alta exitosamente");
-                }
-                else
-                {
-                    MessageBox.Show("Error al intentar dar de alta la carrera");
-                }
-            }
-
-            oculta();
         }
     }
 }

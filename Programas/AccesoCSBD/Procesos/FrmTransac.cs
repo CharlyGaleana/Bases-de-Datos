@@ -30,7 +30,7 @@ namespace AccesoCSBD.Procesos {
       this.Text= this.Text + " " + DateTime.Now.Millisecond;
 
       //Permite el acceso a la BD.
-      GestorBD = new GestorBD.GestorBD("MSDAORA", "", "", "oracle");
+      GestorBD = new GestorBD.GestorBD("MSDAORA", "bd12", "lircar", "oracle");
 
       //Obtiene datos de las materias.
       cons = "select * from Mater";                       //Consulta.

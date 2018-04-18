@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,14 +29,40 @@ namespace Tarea5.Procedimientos
         //consulta los campues que ofrecen la carrera seleccionada en la ciudad seleccionada
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-            string ciudad = cmbCiudades.Text;
-            string carrera = cmbCarreras.Text;
+            OleDbTransaction t;
 
-            //consulta los campus / instituciones que ofrecen la carrera en la ciudad dada
-            cadSql = "select cp.nomcamp, i.nomins, ic.semestres, ic.créditos from t4institución i, t4instcarr ic, t4carrera cr, t4campus cp, t4campcarr cc where ic.idinst = i.idinst and ic.idcar = cr.idcar and i.idinst = cp.idinst and cc.idcamp = cp.idcamp and cc.idcarr = cr.idcar and cp.ciudad = '"
-                + ciudad + "' and cr.nomcarr = '" + carrera + "'";
-            GestorBD.consBD(cadSql, dsCons, "Resultado");
-            dgvConsulta.DataSource = dsCons.Tables["Resultado"];
+            try
+            {
+                GestorBD.conex.Open();
+
+                //se creal el objeto de transacción con el nivel de aislamiento deseado
+                t = GestorBD.conex.BeginTransaction(IsolationLevel.ReadCommitted);
+                string ciudad = cmbCiudades.Text;
+                string carrera = cmbCarreras.Text;
+
+                //consulta los campus / instituciones que ofrecen la carrera en la ciudad dada
+                cadSql = "select cp.nomcamp, i.nomins, ic.semestres, ic.créditos from t4institución i, t4instcarr ic, t4carrera cr, t4campus cp, t4campcarr cc where ic.idinst = i.idinst and ic.idcar = cr.idcar and i.idinst = cp.idinst and cc.idcamp = cp.idcamp and cc.idcarr = cr.idcar and cp.ciudad = '"
+                    + ciudad + "' and cr.nomcarr = '" + carrera + "'";
+                GestorBD.consBD(t, cadSql, "Resultado", dsCons);
+                dgvConsulta.DataSource = dsCons.Tables["Resultado"];
+
+                //finaliza la transacción
+                try
+                {
+                    t.Commit();        //Confirma la transacción.
+                }
+                catch (OleDbException err)
+                {
+                    MessageBox.Show(err.Message);
+                    t.Rollback();      //Si hay error, revierte la transacción.
+                }
+                GestorBD.conex.Close();      //Cierra la conexión a la BD.
+                t = null;                       //Destruye el objeto de transacción.
+                
+            }
+            catch(OleDbException err) {
+                MessageBox.Show(err.Message);
+            }
 
         }
 

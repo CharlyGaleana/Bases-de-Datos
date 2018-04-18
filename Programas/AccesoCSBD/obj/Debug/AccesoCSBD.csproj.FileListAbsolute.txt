@@ -35,7 +35,6 @@ C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.exe
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.pdb
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\AccesoCSBD.exe
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\AccesoCSBD.pdb
-C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\GestorBD.dll
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\GestorBD.pdb
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.csprojResolveAssemblyReference.cache
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.FrmAlumno.resources
@@ -47,3 +46,5 @@ C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Pro
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Properties.Resources.resources
 C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.csproj.GenerateResource.Cache
 C:\Users\sdist\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Procesos.FrmTransac.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\obj\Debug\AccesoCSBD.Procesos.FrmTransac.resources
+C:\Users\sa\Desktop\Bases-de-Datos\Programas\AccesoCSBD\bin\Debug\GestorBD.dll
