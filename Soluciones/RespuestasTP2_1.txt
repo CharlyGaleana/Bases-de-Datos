@@ -1,0 +1,132 @@
+-- TP2, ej. 1
+
+-- 1)
+select nommat, nomal, calif, fecha
+from alum a, historial h, mater m
+where h.cu = a.cu and m.clavem = h.clavem
+order by nomal, fecha desc
+
+
+-- 2)
+-- a)
+select nomprof, categoría
+from prof
+where idprof not in
+	(select idprof
+	from grupo)
+
+-- b)
+select nomprof, categoría
+from prof
+	minus
+select nomprof, categoría
+from prof p, grupo g
+where p.idprof=g.idprof
+
+-- 3)
+select nomal, count(*) "Cant. de cursos"
+from alum a, inscrito i
+where a.cu=i.cu
+group by nomal
+having count(*)>=2
+
+-- 4)
+-- a)
+select nommat, avg(calif)
+from mater m, historial h
+where m.clavem=h.clavem and
+  calif>=6 and fecha between date'2017-01-01' and date'2017-12-31'
+group by nommat
+
+-- b)
+select nommat, avg(calif)
+from mater m, historial h
+where m.clavem=h.clavem and
+  calif>=6 and extract(year from fecha)=extract(year from sysdate)-1
+group by nommat
+
+
+-- 5)
+select nommat, count(distinct calif)
+from mater m, historial h
+where m.clavem=h.clavem
+group by nommat
+having count(distinct calif)>2
+
+
+-- 8)
+select carr, nommat, count(*) 
+from alum a, historial h, mater m
+where fecha between date'2017-01-01' and date'2017-12-31' and
+  a.cu=h.cu and h.clavem=m.clavem
+group by carr, nommat
+order by 1
+
+
+-- 9)
+select nommat, nomal
+from mater m, grupo g, inscrito i, alum a
+where m.clavem=g.clavem and g.claveg=i.claveg and i.cu=a.cu and
+	nommat in
+	(select nommat
+	from mater m, grupo g, inscrito i
+	where m.clavem=g.clavem and g.claveg=i.claveg
+	group by nommat
+	having count(*)<=3)
+order by 1
+
+-- 10) Cons. de división
+select nommat, count(distinct carr)
+from mater m, grupo g, inscrito i, alum a
+where m.clavem=g.clavem and g.claveg=i.claveg and i.cu=a.cu
+group by nommat
+having count(distinct carr) =
+	(select count(distinct carr)	--Cant. de carreras distintas.
+	from alum)
+
+-- 12)
+select nomal, prom
+from alum
+where prom > all
+	(select avg(prom)
+	from alum)
+
+-- 13)
+-- V. 1: estándar
+select nomal, count(*)
+from alum a, inscrito i
+where a.cu=i.cu
+group by nomal
+having count(*) >= all
+	(select count(*)
+	from inscrito
+	group by cu)
+
+-- V. 2: puede ser que en algunos DBMS dé error.
+select nomal, count(*)
+from alum a, inscrito i
+where a.cu=i.cu
+group by nomal
+having count(*) in
+	(select max(count(*))
+	from inscrito
+	group by cu)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,228 @@
+-- Respuestas trabajo práctico 2.3
+
+-- a. Escribir el nombre de las universidades que tienen carreras en el área 
+-- de ‘Ingeniería’, junto con el nombre de dichas carreras y el de sus egresados.
+
+ select NomOrg, NomCar, NomA, Área
+ from Carrera cr, Estudió e, Organización org, Autor a
+ where Área='Ingeniería' and cr.IdCar=e.IdCar and e.IdOrg=org.IdOrg and
+	e.IdA=a.IdA;
+
+
+-- b. Listar el título de las tesis que participaron en concursos del año pasado. 
+-- Ordenar descendentemente por nombre del concurso y ascendentemente por nombre  
+-- de la tesis.
+
+ select NomT, NomCon, FechaIni
+ from Tesis t, Ganó g, Concurso c
+ where extract(year from FechaIni)=extract(year from sysdate)-1
+	and t.IdT=g.IdT and g.IdCon=c.IdCon
+ order by NomCon desc, NomT;
+
+
+-- c. Mostrar el nombre de las empresas que han participado en la 
+-- organización de concursos con montos mínimos de 40,000. 
+-- Ordenar descendentemente por año y por monto.
+
+ select NomOrg, NomCon, extract(year from FechaIni) Año, Monto
+ from Organización org, Organizó o, Concurso c
+ where  Monto>=40000 and Tipo='emp' 
+	and org.IdOrg=o.IdOrg and o.IdCon=c.IdCon
+ order by Año desc, Monto desc;
+
+
+-- d. Obtener el nombre de todas las carreras que son licenciaturas,
+-- junto con el nombre de las universidades en que se imparten.
+
+ select NomCar, NomOrg
+ from Carrera cr, Imparte i, Organización org
+ where NomCar like 'Lic%' and cr.IdCar=i.IdCar and i.IdOrg=org.IdOrg;
+
+
+-- e. Escribir el nombre de los concursos, y el año, en los cuales 
+-- no participaron egresados del ITAM. Ordenar ascendentemente por año.
+
+ select NomCon, extract(year from FechaIni) Año
+ from Concurso c
+ where IdCon not in
+	(select IdCon
+	from Organización org, Estudió e, Ganó g
+	where NomOrg='ITAM' and org.IdOrg=e.IdOrg and e.IdT=g.IdT)
+ order by Año;
+
+
+-- f. Listar el nombre de las tesis que ganaron algún lugar en los 
+-- concursos BANAMEX y AMIME del año pasado (en ambos, no sólo en uno u otro).
+
+-- Solución 1 (con el equivalente a la intersección del álgebra relacional):
+ select	NomT, NomCon, Lugar
+ from 	Tesis t, Ganó g, Concurso c
+ where 	t.IdT in 
+	(select IdT from Concurso c, Ganó g
+	where NomCon like 'BANAMEX%' 
+	 	and extract(year from FechaIni)=extract(year from sysdate)-1
+	 	and c.IdCon=g.IdCon)
+	and t.IdT in 
+	(select IdT from Concurso c, Ganó g
+	where NomCon like 'AMIME%'
+	 	and extract(year from FechaIni)=extract(year from sysdate)-1
+	 	and c.IdCon=g.IdCon)
+   and t.IdT=g.IdT and g.IdCon=c.IdCon;
+
+-- Solución 2 (usando dos alias para algunas tablas):
+ select NomT, c1.NomCon, g1.Lugar, c2.NomCon, g2.Lugar
+ from 	Concurso c1, Concurso c2, Ganó g1, Ganó g2, Tesis t
+ where 	c1.NomCon like 'BANAMEX%'
+	and extract(year from c1.FechaIni)=extract(year from sysdate)-1
+	and c1.IdCon=g1.IdCon
+	and c2.NomCon like 'AMIME%'
+	and extract(year from c2.FechaIni)=extract(year from sysdate)-1
+	and c2.IdCon=g2.IdCon
+	and g1.IdT=g2.IdT and g1.IdT=t.IdT;
+
+
+-- g. Mostrar el nombre de los autores que participaron en algún concurso 
+-- tanto el año pasado como éste (en ambos, no sólo en uno u otro). 
+-- Acompañarlos con el nombre de la(s) carrera(s) de la(s) que egresaron.
+
+ select NomA, NomCar, NomCon, extract(year from FechaIni) Año
+ from 	Autor a, Estudió e, Ganó g, Concurso c, Carrera cr
+ where 	a.IdA in
+	(select IdA
+	from Estudió e, Ganó g, Concurso c
+	where extract(year from FechaIni)=extract(year from sysdate)-1
+	and e.IdT=g.IdT and g.IdCon=c.IdCon)
+	and a.IdA in
+	(select IdA
+	from Estudió e, Ganó g, Concurso c
+	where extract(year from FechaIni)=extract(year from sysdate)
+	and e.IdT=g.IdT and g.IdCon=c.IdCon)
+  and extract(year from FechaIni) between 
+	extract(year from sysdate)-1 and extract(year from sysdate)
+  and a.IdA=e.IdA and e.IdT=g.IdT and g.IdCon=c.IdCon and e.IdCar=cr.IdCar;
+
+
+-- h. Obtener el nombre de los alumnos que egresaron de alguna carrera 
+-- del área de ‘Administrativas’ o que participaron en algún concurso 
+-- celebrado este año.
+
+ select NomA
+ from Carrera cr, Estudió e, Autor a
+ where Área like 'Administrativas%' and cr.IdCar=e.IdCar 
+	and e.IdA=a.IdA
+   union
+ select NomA
+ from Concurso c, Ganó g, Estudió e, Autor a
+ where extract(year from FechaIni)= extract(year from sysdate)
+	and c.IdCon=g.IdCon and g.IdT=e.IdT and e.IdA=a.IdA;
+
+
+-- i. Por empresa y por año, contar la cantidad de concursos que han organizado.
+
+ select NomOrg, extract(year from FechaIni) Año, count(*) CantConcursos
+ from Organización org, Organizó o, Concurso c
+ where Tipo='emp' and org.IdOrg=o.IdOrg and o.IdCon= c.IdCon
+ group by NomOrg, extract(year from FechaIni);
+
+
+-- j. Escribir el nombre de las escuelas cuyos egresados han ganado 
+-- algún lugar en más de dos concursos distintos.
+
+ select NomOrg, count (distinct g.IdCon) Cant_Concursos_Distintos
+ from Organización org, Estudió e, Ganó g
+ where org.IdOrg = e.IdOrg and e.IdT = g.IdT
+ group by NomOrg
+ having count (distinct g.IdCon) > 2;
+
+
+-- k. Listar el nombre de los concursos cuyo monto total de 
+-- organización fue de al menos 100,000. Acompañarlos con el nombre 
+-- de las organizaciones participantes, ordenando ascendentemente 
+-- por nombre del concurso y descendentemente por el de la organización.
+
+ select NomCon, NomOrg, Monto
+ from Concurso c, Organizó o, Organización org
+ where c.IdCon = o.IdCon and o.IdOrg = org.IdOrg
+	and c.IdCon in
+	(select IdCon
+	from Organizó
+	group by IdCon
+	having sum(Monto) >= 100000)
+ order by NomCon, NomOrg desc;
+
+
+-- l) Encontrar el nombre de los autores que ganaron el primer lugar en
+-- máximo un concurso durante el año pasado. Acompañarlos con el nombre de la
+-- tesis con la cual ganaron.
+
+ select NomA, NomT, NomCon, extract(year from FechaIni) Año, Lugar
+ from 	Concurso c, Ganó g, Tesis t, Estudió e, Autor a
+ where 	lugar=1 and extract(year from FechaIni) = extract(year from sysdate)-1
+	and c.IdCon=g.IdCon and g.IdT=t.IdT and t.IdT=e.IdT 
+	and e.IdA=a.IdA	and a.IdA in
+	(select IdA
+	 from 	Concurso c, Ganó g, Estudió e
+	 where 	lugar=1 and extract(year from FechaIni) = extract(year from sysdate)-1
+		and c.IdCon=g.IdCon and g.IdT=e.IdT 
+	 group by IdA
+	 having count(*)<=1);
+
+
+-- m. Obtener el nombre de la(s) organización(es) que más concursos ha(n) organizado.
+
+ select NomOrg, count(*) Cant_Concursos
+ from Organización org, Organizó o
+ where org.IdOrg = o.IdOrg
+ group by NomOrg
+ having count(*) >= all
+	(select count(*)
+	from Organizó
+	group by IdOrg);
+
+
+-- n. Mostrar el nombre de las carreras cuyos egresados tienen menos 
+-- participaciones en los concursos. Mostrar también el nombre de las 
+-- universidades en que se imparten.
+
+ select NomCar, NomOrg
+ from Carrera cr, Estudió e, Organización org
+ where cr.IdCar=e.IdCar and e.IdOrg=org.IdOrg
+	and cr.IdCar in
+	(select IdCar
+	from Estudió e, Ganó g
+	where e.IdT = g.IdT
+	group by IdCar
+	having count(*) <= all
+		(select count(*)
+		from Estudió e, Ganó g
+		where e.IdT = g.IdT
+		group by IdCar));
+
+
+-- o. Listar el nombre de las tesis, y el de sus autores, que han participado 
+-- en más concursos.
+
+ select NomT, NomA
+ from 	Tesis t, Estudió e, Autor a
+ where 	t.IdT in
+	(select IdT
+	from Ganó
+	group by IdT
+	having count(*) >= all
+		(select count(*)
+		from Ganó
+		group by IdT))
+  and t.IdT=e.IdT and e.IdA=a.IdA;
+
+
+-- p. Escribir el nombre de las organizaciones (escuelas o empresas) que han
+-- participado en la organización de todos los concursos registrados.
+
+ select NomOrg, count(*) "Cantidad de concursos"
+ from Organización org, Organizó o
+ where org.IdOrg=o.IdOrg
+ group by NomOrg
+ having count(*) in
+        (select count(*) from Concurso);
+
+

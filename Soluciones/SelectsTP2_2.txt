@@ -1,0 +1,171 @@
+-- RESPUESTAS TRABAJO PRACTICO 2.2
+-- NOTA: la tarea no. 2 la deben entregar en un formato parecido
+-- al de este archivo (sin que sea necesario que vuelvan a teclear
+-- el enunciado, basta con el número de inciso).
+
+
+-- a. Escribir el nombre de las personas egresadas del ITAM que ganaron 
+-- algún lugar en algún concurso. Escribir también el nombre de la carrera
+-- que estudiaron.
+
+	select noma,nomorg,nomcar
+	from Organización org, estudió e, autor a, carrera c
+	where nomorg='ITAM' and org.idorg=e.idorg and e.ida=a.ida and
+		e.idcar=c.idcar;
+
+
+-- b. Escribir el nombre de los concursos que hubo entre mayo y agosto del año 
+-- pasado, así como el nombre de las organizaciones que los organizaron.
+
+-- Solución 1:
+	select nomcon, nomorg, FechaIni, FechaFin
+	from concurso c, organizó o, organización org
+	where 	(fechaini between date'2017-05-01' 
+		and date'2017-08-31' or
+		fechafin between date'2017-05-01' 
+		and date'2017-08-31')
+		and c.idcon=o.idcon and o.idorg=org.idorg;
+
+-- Solución 2: optimizada para especificar menos condiciones:
+	select nomcon, nomorg, FechaIni, FechaFin
+	from concurso c, organizó o, organización org
+	where 	(fechaini<=date'2017-08-31' and
+		fechafin>=date'2017-05-01')
+		and c.idcon=o.idcon and o.idorg=org.idorg;
+
+-- Solución 3: es válida sin importar en qué año se ejecute la consulta.
+-- Se considera que un concurso inicia y termina el mismo año; esto es,
+-- el año de FechaIni y de FechaFin es el mismo.
+-- En este caso se usa la función 'extract', de Oracle, para obtener los 
+-- años de las fechas. Hay que recordar que todos los DBMS proporcionan 
+-- funciones similares para el manejo de fechas, aunque pueden variar en su
+-- nombre o formato.
+
+	select nomcon, nomorg, FechaIni, FechaFin
+	from concurso c, organizó o, organización org
+	where 	extract (year from fechaini)=extract(year from sysdate)-1 and
+		extract(month from fechaini) between 5 and 8 and
+		c.idcon=o.idcon and o.idorg=org.idorg;
+
+
+-- c. Obtener el nombre de las tesis que ganaron el 1er. lugar en los 
+-- concursos celebrados este año, así como el nombre de los autores 
+-- de las mismas.
+
+	select nomt, nomcon, noma, Lugar, FechaIni, FechaFin
+	from concurso c, ganó g, tesis t, estudió e, autor a
+	where 	lugar=1 and extract(year from fechaIni) = 
+			extract(year from sysdate)
+		and c.idcon=g.idcon and g.idt=t.idt 
+		and t.idt=e.idt and e.ida=a.ida;
+
+
+-- d. Obtener el nombre de los ganadores del 1er. lugar del concurso ANIEI y el nombre de
+-- las escuelas de las cuales egresaron, sin importar el año en que hayan ganado.
+
+	select NomA, nomorg, NomCon, Lugar
+	from Concurso c, Ganó g, Estudió e, Autor a, Organización org
+	where Lugar=1 and NomCon like 'ANIEI%' and 
+		c.IdCon=g.IdCon and g.IdT=e.IdT and e.IdA=a.IdA and
+		e.IdOrg=org.IdOrg;
+
+
+-- e. Escribir el nombre de las organizaciones que no organizaron concurso 
+-- alguno el año pasado. Ordenar alfabéticamente.
+
+	select nomorg
+	from organización
+	where idorg not in
+		(select idorg
+		from concurso c, organizó o
+		where (extract(year from fechaIni) = 
+			extract(year from sysdate)-1)
+			and c.idcon=o.idcon)
+	order by nomorg;
+
+
+-- f. Por año, contar en cuántos concursos ha participado cada organización, 
+-- junto con el monto aportado para ellos. En la respuesta también debe 
+-- aparecer el nombre de las organizaciones.
+
+	select extract(year from FechaIni) Año, nomorg, count(*) Cant_concursos,
+		sum(Monto) Monto
+	from Organización org, Organizó o, Concurso c
+	where org.IdOrg=o.IdOrg and o.IdCon=c.IdCon
+	group by extract(year from FechaIni), nomorg
+	order by 1, 2;
+
+
+-- g. Escribir el nombre de las escuelas cuyos egresados han ganado algún 
+-- lugar en más de dos concursos distintos.
+
+	select nomorg,count(distinct idcon) Cant_concursos_distintos
+	from organización org, estudió e, ganó g
+	where org.idorg=e.idorg and e.idt=g.idt
+	group by nomorg
+	having count(distinct idcon)>2;
+
+
+-- h. Obtener el nombre de la(s) organización(es) que más concursos ha(n) organizado.
+-- (Solución estándar para cualquier DBMS)
+
+	select nomorg, count(*) Cant_concursos
+	from organización org, organizó o
+	where org.idorg=o.idorg
+	group by nomorg
+	having count(*) >= all
+		(select count(*)
+		from organizó
+		group by idorg);
+
+
+-- i. Escribir el nombre de las personas que han ganado en más de dos concursos, 
+-- indicando en cada caso el nombre de la tesis con la cual ganaron, así como el 
+-- del concurso correspondiente.
+
+	select	NomA, NomT, NomCon
+	from	Autor a, Estudió e, Tesis t, Ganó g, Concurso c
+	where	a.IdA in
+		 (select IdA
+		 from Estudió e, Ganó g
+		 where e.IdT=g.IdT
+		 group by IdA
+		 having count(*) > 2)
+		and a.IdA=e.IdA and e.IdT=t.IdT and t.IdT=g.IdT
+		and g.IdCon=c.IdCon;
+
+
+-- j. Escribir el nombre de las tesis que ganaron algún lugar en los concursos 
+-- ANIEI e IMEF del año pasado (en ambos, no sólo en uno u otro).
+
+-- Solución 1 (con intersección):
+	select 	NomT, NomCon, Lugar
+	from 	Tesis t, Ganó g, Concurso c
+	where 	t.IdT in 
+		(select IdT from Concurso c, Ganó g
+	   	 where NomCon like 'ANIEI%' 
+		 	and extract(year from FechaIni)=
+				extract(year from sysdate)-1
+		 	and c.IdCon=g.IdCon)
+	  and 	t.IdT in 
+		(select IdT from Concurso c, Ganó g
+	   	 where NomCon like 'IMEF%'
+		 	and extract(year from FechaIni)=
+				extract(year from sysdate)-1
+		 	and c.IdCon=g.IdCon)
+	  and  	t.IdT=g.IdT and g.IdCon=c.IdCon;
+
+-- Solución 2 (usando dos alias para algunas tablas):
+	select 	NomT, c1.NomCon, g1.Lugar, c2.NomCon, g2.Lugar
+	from 	Concurso c1, Concurso c2, Ganó g1, Ganó g2, Tesis t
+	where 	c1.NomCon like 'ANIEI%' and
+		extract(year from c1.FechaIni)= 
+		  extract(year from sysdate)-1
+		and c1.IdCon=g1.IdCon
+		and c2.NomCon like 'IMEF%'
+		and extract(year from c2.FechaIni)=
+		  extract(year from sysdate)-1
+		and c2.IdCon=g2.IdCon
+		and  g1.IdT=g2.IdT and g1.IdT=t.IdT;
+
+

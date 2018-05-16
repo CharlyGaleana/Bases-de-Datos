@@ -1,0 +1,8 @@
+-- Respuestas TP6.2
+
+-- d.
+select Doc.query
+('for $x in //department
+where $x//dname >="L"
+return <resul> {$x//dname} </resul>')
+from Company;

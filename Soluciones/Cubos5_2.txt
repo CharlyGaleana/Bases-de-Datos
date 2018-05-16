@@ -1,0 +1,94 @@
+-- TP5.2
+-- a.
+SELECT
+   { [Measures].[Sales Amount], [Measures].[Order Quantity] } ON COLUMNS,
+   { Product.Mountain, Product.Road } ON ROWS
+FROM [Clientes-Productos]
+WHERE Customer.[Estados Unidos]
+
+-- b.
+SELECT
+   Measures.[Sales Amount] ON COLUMNS,
+   NON EMPTY Customer.City.Members ON ROWS
+FROM [Clientes-Productos]
+
+
+-- c.
+select
+   Product.[Product Line].Members on columns,
+   Customer.[Country-Region].Members on rows
+from [Clientes-Productos]
+where Measures.[Total Product Cost]
+
+
+-- d.
+select
+   Measures.[Sales Amount] ON COLUMNS,
+   { Customer.Lancaster, Customer.[Saint-Denis] } ON ROWS
+from [Clientes-Productos]
+where Product.[Paseo: 1000, azul, 46]
+
+
+-- e.
+select [Sales Amount - Reseller Sales] on columns,
+	non empty descendants(Sales,1) on rows  -- equiv. a .children
+	--non empty descendants([Dept-Title], 2) on rows --Se puede ir al nivel n.
+	--non empty sales.children on rows
+from [Clientes-Productos]
+
+-- f.
+select [Order Quantity] on columns,
+	filter(Product.[Product Line].members,[Order Quantity]>350) on rows
+from [Clientes-Productos]
+where Customer.London
+
+
+-- g.
+select [Sales Amount] on columns,
+	non empty filter((Customer.City.members, [Product Line].members), 
+	[Sales Amount]>80000) on rows
+from [Clientes-Productos]
+where [order Date].[2017].[2]
+
+-- Variante: todas las dimensiones empleadas en una tupla.
+select [Sales Amount] on columns,
+	non empty filter((Customer.City.members, [Product Line].members,
+	[order Date].[2017].[2]), [Sales Amount]>80000) on rows
+from [Clientes-Productos]
+
+
+
+-- i.
+select non empty (Customer.[Country-Region].members,
+Product.[Product Line].members) on 0,
+  	{[Order Date].[2017], [Order Date].[2018]} on 1
+from [Clientes-Productos]
+where Measures.[Sales Amount]
+
+
+
+-- k.
+select non empty (Customer.[Country-Region].members,
+Product.[Product Line].members) on 0,
+  	non empty Product.[Model name].members on 1
+from [Clientes-Productos]
+where [Sales Amount]
+
+
+-- l.
+select non empty (Customer.[Country-Region].members,
+Product.[Product Line].members) on 0,
+  	non empty (Product.[Model name].members, [Order Date].[2018]) on 1
+from [Clientes-Productos]
+where [Sales Amount]
+
+
+
+
+
+
+
+
+
+
+

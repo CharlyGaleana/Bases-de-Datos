@@ -1,0 +1,311 @@
+-- Soluciones del ejercicio TP2.4.
+
+-- Inciso a.
+create or replace function cantMatersAlum(nombre char) return integer is
+  cantMaters integer;
+begin
+  select count(*) into cantMaters
+  from Alum a, Inscrito i
+  where Nomal=nombre and a.CU=i.CU;
+  return cantMaters;
+end;
+
+-- Ejecución:
+declare NombreAl varchar(20);
+begin
+  NombreAl:= 'José';
+  dbms_output.put('Cantidad de materias de ' || NombreAl || ': ');
+  dbms_output.put_line(cantMatersAlum(NombreAl));
+end;
+
+
+-- b.
+create or replace procedure nombreMayorCant(nombre1 char, nombre2 char, 
+			nombreMayor out varchar) is
+  cant1 int; cant2 int;
+begin
+  cant1:= cantMatersAlum(nombre1);
+  cant2:= cantMatersAlum(nombre2);
+  if cant1 > cant2 then
+    nombreMayor:= nombre1;
+  else
+    if cant2 > cant1 then
+      nombreMayor:= nombre2;
+    else
+      if cant1 <> 0 then
+	nombreMayor:= 'igual';
+      else
+	nombreMayor:= 'ninguna';
+      end if;
+    end if;
+  end if;
+end;
+
+-- Ejecución:
+
+declare
+  nom1 varchar(30); nom2 varchar(30); result varchar(30);
+begin
+  nom1:= 'Ana';  nom2:= 'José';
+  nombreMayorCant(nom1, nom2, result);
+
+  if result = 'igual' then
+    dbms_output.put_line(nom1||' y '||nom2||' llevan igual cantidad de materias');
+  else
+    if result = 'ninguna' then
+	dbms_output.put_line(nom1||' y '||nom2||' no llevan materia alguna');
+    else
+	dbms_output.put_line('Entre '||nom1||' y '||nom2||', lleva más materias: '||result);
+    end if;
+  end if;
+end;
+
+
+-- c.
+-- Procedimiento que actualiza el promedio de un alumno.
+
+create or replace procedure ActPromAlum(nombre char, prome out real) is
+begin
+-- Calcula el promedio, considerando sólo calificaciones aprobatorias.
+  select avg(Calif) into prome
+    from Alum a, Historial h
+    where a.NomAl= nombre and h.Calif>=6 and a.CU=h.CU;
+
+-- Asigna el resultado correspondiente en Alum.Prom.
+  update Alum set Prom=prome	-- Actualiza con null o el promedio calculado.
+	where NomAl=nombre;
+end;
+
+-- Ejecución:
+
+declare 
+  nom varchar(30);  p real;
+begin
+  nom:= 'Ana';
+  ActPromAlum(nom,p);
+  if p is null then
+    dbms_output.put_line(nom || ' no ha terminado materia alguna o no es alumno');
+  else
+    dbms_output.put_line(nom || ' tiene promedio de: ' || p);
+  end if;
+end;
+
+
+-- Cursores.
+-- Ejemplo 1: declaración y uso de un cursor. Muestra el nombre y el promedio de todos 
+-- los alumnos.
+
+declare cursor DatosAlums is
+	select NomAl, Prom from Alum;
+  nombre varchar(30); promedio real;
+begin
+  open DatosAlums;
+  loop
+	fetch DatosAlums into nombre, promedio;
+	exit when DatosAlums%notfound;
+	dbms_output.put_line('El alumno: ' || nombre || ', tiene promedio: ' || promedio);
+  end loop;
+ close DatosAlums;
+end;
+
+-- Ejemplo 2: ídem al anterior, sólo que ahora utilizando for.
+declare cursor DatosAlums is
+	select NomAl, Prom from Alum;
+begin
+  for varAlum in DatosAlums loop
+    dbms_output.put_line('El alumno: ' || varAlum.NomAl || 
+			', tiene promedio: ' || varAlum.Prom);
+  end loop;
+end;
+
+
+-- Inciso d.
+create or replace procedure AlumMats(nomAlum char) is
+  llevaMaters boolean;
+
+-- Cursor para obtener las materias del alumno.
+  cursor matersAlum is
+    select NomMat
+    from Alum a, Inscrito i, Grupo g, Mater m
+    where a.NomAl=nomAlum and a.CU=i.CU and i.ClaveG=g.ClaveG 
+      and g.ClaveM=m.ClaveM;
+
+begin
+  dbms_output.put_line('El alumno(a): ' || nomAlum  || ', lleva las materias:');
+  llevaMaters:= false;
+
+-- Ciclo para listar las materias del alumno.
+  for tuplamat in matersAlum loop
+    dbms_output.put_line(tuplamat.NomMat);
+    llevaMaters:= true;
+  end loop;
+
+-- Imprime mensaje si no lleva materias.
+  if not llevaMaters then
+    dbms_output.put_line('Ninguna');
+  end if;
+end;
+
+-- Ejecución:
+
+begin
+  AlumMats('Oralia');
+end;
+
+
+-- e.
+-- Procedimiento para mostrar el nombre y el promedio
+--	de los alumnos con los n mayores promedios.
+
+create or replace procedure MayoresProms(n integer) is
+
+-- Definición del cursor. Los promedios deben obtenerse en orden
+-- descendente.
+  cursor nMayProms is
+    select NomAl, Prom from Alum order by Prom desc;
+
+-- La construcción: %rowtype, permite que la variable tuplaAlum
+-- tenga el mismo tipo de datos que una tupla del cursor.
+  i int; tuplaAlum nMayProms%rowtype;
+begin
+  if n<=0 then
+    dbms_output.put_line('n <= 0; dar un valor >= 1');
+  else 
+    i:= 1;
+    open nMayProms;
+    dbms_output.put_line('Alumnos con los ' || n || ' mayores promedios:');
+    loop
+      fetch nMayProms into tuplaAlum;
+      exit when i>n or nMayProms%notfound;
+	dbms_output.put_line(tuplaAlum.NomAl || ' ' || tuplaAlum.Prom);
+	i:= i+1;
+    end loop;
+    close nMayProms;
+  end if;
+end;
+
+-- Ejecución:
+
+begin
+  MayoresProms(4);
+end;
+
+
+
+-- Inciso g.
+-- Imprime mensaje al insertar en Grupo.
+
+create or replace trigger InsGrupo
+  after insert on Grupo
+  for each row
+  begin
+	dbms_output.put_line('Se insertó en Grupo: ');
+	dbms_output.put_line('  ClaveG= ' || :new.ClaveG || ', Salón= ' || :new.Salón);
+	dbms_output.put_line('  IdProf= ' || :new.IdProf || ', ClaveM= ' || :new.ClaveM);
+  end;
+
+
+-- Inciso h.
+-- Cuando cambia una clave de materia, cambia las claves en las
+--  tablas asociadas.
+create or replace trigger CambiaMater
+  before update on Mater
+  for each row
+  begin
+    update Grupo g set g.ClaveM= :new.ClaveM 
+	where g.ClaveM= :old.ClaveM;
+    dbms_output.put_line('También se cambió la clave de la materia en Grupo');
+
+    update Historial h set h.ClaveM= :new.ClaveM 
+	where h.ClaveM= :old.ClaveM;
+    dbms_output.put_line('También se cambió la clave de la materia en Historial');
+  end;
+
+
+-- Inciso i.
+-- Escribe mensajes cuando se inserta una tupla en Inscrito.
+-- NOTA: si en lugar de 'before' se usará 'after', marcaría error
+--	porque el contenido de la tabla Inscrito estaría cambiando con el 'insert'.
+create or replace trigger insInscrito
+  before insert on Inscrito
+  for each row
+    declare nomAlum char(30); cantMaters int; cantcreds int; credsMater int;
+  begin
+
+  -- Calcula la cantidad de materias y de créditos actuales del alumno.
+  -- Nota: no se puede usar 'Group by' porque si no tiene grupo alguno, marca error.
+    select count(*), sum(Creds) into cantMaters, cantCreds
+     from Inscrito i, Grupo g, Mater m
+     where i.CU= :new.CU and i.ClaveG=g.ClaveG and g.ClaveM=m.ClaveM;
+
+  -- Si es su primer grupo, no tiene materias previas.
+  -- Se debe usar 'is null' porque si se pregunta '=null', no funciona.
+    if cantCreds is null then
+     	cantMaters:= 0; cantCreds:= 0;
+    end if;
+
+  -- Considera y acumula los datos de la nueva alta.
+    select Creds into credsMater	  -- Céditos de la materia del grupo.
+     from Grupo g, Mater m
+     where g.ClaveG= :new.ClaveG  and g.ClaveM=m.ClaveM;       
+    cantMaters:= cantMaters + 1;	  -- Nueva cantidad de grupos.
+    cantCreds:= cantCreds + credsMater;	  -- Nueva cantidad de créditos.
+
+  -- Obtiene el nombre del alumno.
+    select NomAl into nomAlum
+     from Alum
+     where CU= :new.CU;
+
+  -- Mensaje.
+    dbms_output.put('Alumno: ' || nomAlum);
+    dbms_output.put('  Cant. de materias: ' || cantMaters);
+    dbms_output.put_line('  Cant. de créditos: ' || cantCreds);
+
+  -- PRÁCTICA: terminar la segunda parte del problema.
+
+  end;
+
+
+-- Inciso j.
+-- Al insertar una nueva calificación en Historial, calcula el 
+-- nuevo promedio del alumno.
+
+create or replace trigger CambiaPromAl
+before insert on Historial
+for each row
+  declare prome real; suma int; cant int;
+begin
+
+-- Calcula el promedio, considerando sólo calificaciones aprobatorias.
+  select sum(calif), count(calif) into suma, cant
+    from Historial h
+    where h.CU= :new.cu 
+	and h.Calif>=6;
+
+-- Asigna el resultado correspondiente en Alum.Prom.
+  if suma is null then		-- No ha terminado materia alguna.
+    if :new.Calif>=6 then	-- Si es calif. aprobatoria, se establece Prom.
+ 	update Alum set Prom= :new.Calif
+	  where CU= :new.CU;
+    end if;
+  else
+    if :new.Calif>=6 then	-- Ya tiene materias cursadas.
+	prome:= (suma + :new.Calif) / (cant + 1);  -- Considera nueva calif.
+	update alum set Prom= prome
+	  where CU=:new.CU;
+    end if;
+  end if;
+
+  -- PRÁCTICA: terminar el resto del problema.
+
+end;
+
+
+
+
+
+
+
+
+
+

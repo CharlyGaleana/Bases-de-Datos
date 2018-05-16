@@ -1,0 +1,71 @@
+--a. Obtener el nombre de los empleados.
+select Doc.query('companyDB//employee/fname')
+from Company;
+
+--b. Obtener el nombre de los departamentos.
+select Doc.query('companyDB//department/dname')
+from Company;
+
+--c. Obtener el nombre de los departamentos 
+--que tienen ubicaciones en "Houston".
+select Doc.query('companyDB//department[locations/location="Houston"]/dname')
+from Company;
+
+--d. Obtener el nombre de los
+--proyectos con ubicación en "Stafford".
+select Doc.query('companyDB//project[plocation="Stafford"]/pname')
+from Company;
+
+--e. Listar el nombre de los empleados con sueldo inferior a 30,000.
+select Doc.query('companyDB//employee[salary<30000]/fname')
+from Company;
+
+--f. Escribir el nombre de los proyectos ubicados en una ciudad cuyo nombre inicie con una
+--letra a partir de "N".
+select Doc.query('companyDB//project[plocation>="N"]/pname')
+from Company;
+
+--g. Mostrar el número de los proyectos controlados por el departamento 5.
+
+select Doc.query('companyDB//department[@dno=5]/projectsControlled[@pnos]')
+from Company;
+
+--h. Mostrar el nombre de los empleados 
+--que están adscritos al departamento 7.
+
+select Doc.query('companyDB//department[@dno=7]/employees[@essns]')
+from Company;
+
+--i. Obtener el nombre de los empleados que no tienen dependientes.
+select Doc.query('companyDB//employee[not (dependents)]/fname')
+from Company;
+
+--j, Escribir el nombre de los departamentos que tienen una ubicación en "Bellaire" o cuyo gerente
+--fue nombrado en 1999.
+select Doc.query('companyDB//department[locations/location="Bellaire"
+or contains(manager/startDate,"1999")]/dname')
+from Company;
+
+--k. Escribir el nombre de los empleados que trabajan para el departamento 6 o que tienen un
+--salario superior a los 90,000.
+select Doc.query('companyDB//employee[@worksFor=6 or salary>90000]/fname')
+from Company;
+
+--l. Para los empleados que trabajan en el departamento 7, listar el nombre de su cónyuge (‘Spouse’).
+select Doc.query('companyDB//employee[@worksFor=7]//dependent[relationship="Spouse"]/dependentName')
+from Company;
+
+--m. Para los departamentos cuyo nombre inicia con una letra a partir de ‘R’, obtener el nombre de
+--sus ubicaciones (location) siempre y cuando éstas inicien con una letra a partir de ‘P’.
+select Doc.query('companyDB//department[dname>="R"]//location[.>="P"]')
+from Company;
+
+--n. Listar el nombre de los departamentos que tienen una ubicación cuyo nombre inicie con una
+--letra a partir de ‘S’.
+select Doc.query('companyDB//locations[location>="S"]/../dname')
+from Company;
+
+--o. Mostrar el nombre de los proyectos que tienen empleados que les dedican más de 40 horas
+--de trabajo.
+select Doc.query('companyDB//workers[worker>40.0]/../pname')
+from Company;

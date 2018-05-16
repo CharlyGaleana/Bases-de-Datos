@@ -1,0 +1,34 @@
+-- Respuestas Tp6.1
+
+-- b. Obtener el nombre de los departamentos.
+select Doc.query('companyDB//department/dname')
+from Company;
+
+-- d. Obtener el nombre de los proyectos con ubicación en "Stafford".
+select Doc.query('companyDB//project[plocation="Stafford"]/pname')
+from Company;
+
+-- f.
+select Doc.query('companyDB//project[plocation>="N"]/pname')
+from Company;
+
+-- k.
+select Doc.query('companyDB//employee[@worksFor=6 or salary>90000]/fname')
+from Company;
+
+-- o.
+select Doc.query('companyDB//workers/worker[.>40]/../../pname')
+from Company;
+
+select Doc.query('companyDB//workers[worker>40]/../pname')
+from Company;
+
+select Doc.query('companyDB//workers/worker[.>40]/../../*')	--Muestra un uso de *.
+from Company;
+
+
+
+
+
+
+

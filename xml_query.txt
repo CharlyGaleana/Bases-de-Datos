@@ -1,0 +1,101 @@
+--Ejemplo: Listar el nombre y el apellido de los empleados ordenando descendentemente por
+--apellido (el orden default es ascending)
+
+select Doc.query
+('for $x in //employee
+order by $x/lname descending
+return <resul> {$x/fname,$x/lname} </resul>')
+from Company;
+
+select Doc.query
+('for $x in //employee
+let $y := ($x/fname,$x/lname)
+order by $x/lname descending
+return <resul> {$y} </resul>')
+from Company;
+
+--a. Escribir el nombre (completo) de los empleados en orden ascendente por apellido.
+select Doc.query
+('for $x in //employee
+let $y := concat($x/fname, " ", $x/minit , ". ", $x/lname)
+order by $x/lname
+return <resul> {$y} </resul>')
+from Company;
+
+--b. Escribir el nombre (completo) de los empleados para los cuales su nombre inicia con “J”.
+select Doc.query
+('for $x in //employee
+where substring($x/fname, 1, 1) = "J"
+return <resul> { concat($x/fname, " ", $x/minit, ". ", $x/lname) } </resul>')
+from Company;
+
+--c. Obtener el nombre de los proyectos que tienen trabajadores que le dedican un máximo de 5
+--horas al proyecto.
+select Doc.query
+('for $x in //project
+where $x//worker <= 5
+return <resul> {$x/pname} </resul>')
+from Company;
+
+--d. Escribir el nombre de los departamentos que inicien con una letra a partir de ‘L’.
+select Doc.query
+('for $x in //department
+where $x/dname >= "L"
+return <resul> {$x/dname} </resul>')
+from Company;
+
+--e. Mostrar el nombre de los proyectos que inician con la palabra "Product" y que tienen más de
+--dos trabajadores.
+select Doc.query
+('for $x in //project
+where substring($x/pname, 1, 7) = "Product" and count($x//worker) > 2
+return <resul> {$x/pname} </resul>')
+from Company;
+
+
+--f. Listar el nombre de los proyectos controlados por un departamento con clave mínima de 6.
+select Doc.query
+('for $x in //project
+where $x/@controllingDepartment >= 6
+return <resul> {$x/pname} </resul>')
+from Company;
+
+--g. Igual al anterior, mostrando también la cantidad de empleados que tienen dichos
+--proyectos.
+select Doc.query
+('for $x in //project
+where $x/@controllingDepartment >= 6
+return <resul> {$x/pname cast as xs:string?, count($x//worker) cast as xs:string?} </resul>')
+from Company;
+
+--h. Escribir el nombre de los departamentos (usando For).
+select Doc.query
+('for $x in //department
+return <resul> {$x//dname} </resul>')
+from Company;
+
+--i. Escribir el nombre de los departamentos (usando Let).
+select Doc.query
+('let $x := //department
+return <resul> {$x//dname} </resul>')
+from Company;
+
+--j. Obtener el nombre y los datos del manager de cada departamento.
+select Doc.query
+('for $x in //department
+let $y := $x/dname, $z := $x/manager
+return <resul> {$y, $z} </resul>')
+from Company;
+
+--k. Listar el promedio del salario que ganan los empleados.
+select Doc.query
+('let $x := //employee
+return <resul> { avg($x/salary) } </resul>')
+from Company;
+
+--l. Mostrar el valor máximo de horas dedicadas a cada proyecto.
+select Doc.query
+('for $x in //project
+let $y := $x/pname, $z := max($x//worker)
+return <resul> { $y cast as xs:string?, &z cast as xs:string? } </resul>')
+from Company;

@@ -1,0 +1,46 @@
+--a. Muestra las ventas (monto y unidades) de las 
+--líneas de productos Mountain y Road en
+--Estados Unidos.
+
+select 
+{ [Measures].[Sales Amount],
+[Measures].[Order Quantity] } on columns,
+{ [Product].[Product Line].&[M], 
+ [Product].[Product Line].&[R] } on rows
+from [Clientes-Productos]
+where [Customer].[Country-Region].&[Estados Unidos];
+
+
+-- 2. Muestra los montos de las ventas de cada modelo de
+-- los productos.
+
+select
+Measures.[Sales Amount] on columns,
+non empty Product.[Model Name].members on rows
+from [Clientes-Productos]
+
+--b. Muestra por ciudad de los clientes el monto
+-- de las ventas en dichas ciudades.
+
+select
+[Measures].[Sales Amount] on columns,
+non empty [Customer].[City].members on rows
+from [Clientes-Productos];
+
+-- 3. Cantidades vendidas de las líneas de productos en el año
+-- actual. La medida se especifica en el where.
+select
+Product.[Product Line].members on columns,
+[Order Date].[2018] on rows
+from [Clientes-Productos]
+where Measures.[Order Quantity];
+
+--c. Obtén los costos totales de los productos 
+--por línea del producto y por país. Especifica la
+--medida en el where.
+
+select 
+Product.[Product Line].members on columns,
+[Customer].[Country-Region].members on rows
+from [Clientes-Productos]
+where [Measures].[Total Product Cost];
