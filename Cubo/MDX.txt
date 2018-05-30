@@ -44,3 +44,45 @@ select
 { [Measures].[Total Product Cost], [Measures].[Sales Amount] } on columns, 
 non empty ([Employee].[Employee].[FullName].members , [Product].[Spanish Product Category Name].members, { [Order Date].[Tiempo].[Año].&[2002].&[2], [Order Date].[Tiempo].[Año].&[2002].&[4], [Order Date].[Tiempo].[Año].&[2003].&[4], [Order Date].[Tiempo].[Año].&[2003].&[2] } ) on rows
 from [Cubo]
+
+--XPATH EXAMEN
+
+--a)	Lista el nombre de los proyectos controlados por un departamento con clave máxima de 4,
+-- cuyo nombre, del proyecto, inicie con una letra inferior a ‘O’.
+
+select Doc.query('companyDB//project[@controllingDepartment<=4]/pname[.<"O"]')
+from Company;
+
+--b)	Para los empleados que viven en Texas (TX), escribe el nombre de sus hijos ('Son' o 'Daughter').
+
+select Doc.query('companyDB//employee[contains(address, "Houston")]//dependent[relationship = "Son" or relationship = "Daughter"]/dependentName')
+from Company;
+
+--XQuery
+
+--c)	Para los departamentos cuyo nombre inicia con una letra inferior a ‘P’,
+-- muestra su nombre y la cantidad de ubicaciones (locations) que tienen.
+
+select Doc.query
+('for $x in //department
+where $x/dname < "P"
+return <resul> {$x/dname cast as xs:string?, count($x//location) cast as xs:string? } </resul>')
+from Company;
+
+--d)	Para los empleados que trabajan para el departamento 5, lista su nombre completo 
+--junto con el nombre de sus dependientes, considerando sólo a los que tienen dependientes.
+
+select Doc.query
+('for $x in //employee, $y in $x//dependent
+where $x/@worksFor = 5 and count($x//dependent) > 0 
+return <resul> {$x/lname, $y/dependentName} </resul>')
+from Company;
+
+--e)	Para los departamentos que tienen más de dos ubicaciones, 
+--escribir el nombre del departamento y el nombre (fname) de los empleados adscritos a él.
+
+select Doc.query
+('for $x in //department, $y in //employee
+where $y/@worksFor = $x/@dno and count($x//location) > 2 
+return <resul> {$x/dname, $y/fname} </resul>')
+from Company;
