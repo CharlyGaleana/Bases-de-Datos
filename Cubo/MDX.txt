@@ -1,0 +1,46 @@
+--a a)	Para la categoría ‘Prenda’ muestra los montos y unidades vendidas en ‘Europe' y ‘Pacific’
+-- (grupos territoriales) en el segundo trimestre del año antepasado.
+select
+{ [Measures].[Sales Amount], [Measures].[Order Quantity] } on columns,
+filter( {[Sales Territory].[Sales Territory Group].&[Europe], [Sales Territory].[Sales Territory Group].&[Pacific]}, [Order Date].[Tiempo].[Año].&[2003].&[2] )on rows
+from [Cubo]
+where [Product].[Spanish Product Category Name].Prenda
+
+
+--c)	Obtén los precios unitarios de cada línea de producto por grupos territoriales 
+--de los empleados en el primero y tercer trimestres del año ante-antepasado. 
+--En el resultado deben verse los grupos y los trimestres.
+select 
+{ [Employee - Sales Territory].[Sales Territory Group].members } on columns, 
+{ [Order Date].[Tiempo].[Año].&[2002].&[1], [Order Date].[Tiempo].[Año].&[2002].&[3] } on rows
+from [Cubo]
+where [Measures].[Unit Price]
+
+--d)	Muestra los montos de impuestos por país y por línea de productos, 
+--considerando sólo a los que superaron los $20,000.
+select 
+{ [Reseller].[Jerarquía].[Sales Territory Country].members } on columns,
+ filter( [Product].[Produc Line Name].members, [Measures].[Tax Amt] > 20000 )  on rows
+from [Cubo]
+where  [Measures].[Tax Amt]
+
+-- l.
+select non empty ([Reseller].[Jerarquía].[Sales Territory Country].members,
+Product.[Product Line].members) on 0,
+  	non empty (Product.[Model name].members, [Order Date].[2018]) on 1
+from [Cubo]
+where [Sales Amount]
+
+--b)	Por país de los Reseller lista los montos vendidos, e impuestos, en cada trimestre del año pasado.
+
+select
+( [Reseller].[Jerarquía].[Sales Territory Country], [Order Date].[Tiempo].[Año].&[2003].children ) on columns,
+{ [Measures].[Sales Amount], [Measures].[Tax Amt] } on rows
+from [Cubo]
+
+--e)	Lista los costos totales y los montos vendidos en los trimestres 2 y 4, de los años antepasado y pasado, por cada categoría de los productos y por nombre de los empleados. Debe verse cada trimestre.
+
+select
+{ [Measures].[Total Product Cost], [Measures].[Sales Amount] } on columns, 
+non empty ([Employee].[Employee].[FullName].members , [Product].[Spanish Product Category Name].members, { [Order Date].[Tiempo].[Año].&[2002].&[2], [Order Date].[Tiempo].[Año].&[2002].&[4], [Order Date].[Tiempo].[Año].&[2003].&[4], [Order Date].[Tiempo].[Año].&[2003].&[2] } ) on rows
+from [Cubo]
